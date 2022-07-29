@@ -32,4 +32,4 @@ const addFormController = async function(req, res) {
     }
 };
 
-module.exports = { getUserFormsController, addFormController };
+module.exports = { getUserFormsController, addFormController, getOneFormById };
