@@ -26,14 +26,20 @@ const SignUpController = async function (req, res) {
         const checkIfEmailExists = await User.findOne({ email: newUser.email })
 
         if (checkIfEmailExists) {
-            console.log("test");
-            throw new Error("email already exists")
+            res.status(404).send("email already exists")
+            return
+        }
+        const checkIfUsernameExists = await User.findOne({ username: newUser.username })
+
+        if (checkIfUsernameExists) {
+            res.status(404).send("username already exists")
+            return
         }
         const userdb = new User(newUser)
         const dbResponse = await userdb.save()
         res.send(dbResponse)
     } catch (error) {
-        res.sendStatus(500);
+        res.status(error?.status).send({ error: error.msg });
     }
 
 };
