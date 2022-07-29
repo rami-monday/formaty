@@ -28,4 +28,4 @@ const FormSchema = new Schema({
 
 const Form = mongoose.model("form", FormSchema)
 
-module.exports = FormSchema
+module.exports = Form
