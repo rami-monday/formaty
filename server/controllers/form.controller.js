@@ -1,11 +1,10 @@
 const Form = require("../models/form.model");
-const Form = require("../models/form.model")
 
 
 const getUserFormsController = async function(req, res) {
     try {
         const { userId } = req.body
-        const usersFormsFromDb = await Form.find({})
+        const usersFormsFromDb = await Form.find({ ownerId: userId })
         res.send(usersFormsFromDb)
     } catch (error) {
         res.sendStatus(500)
