@@ -1,18 +1,35 @@
 const User = require("../models/user.model")
 
-const getUsersController = async function (req, res) {
+const SignInController = async function (req, res) {
+    const { email, password } = req.body
     try {
-        const usersFromDB = await User.find({})
-        res.send(usersFromDB)
+        const usersFromDB = await User.findOne({ email: email })
+        if (!usersFromDB) {
+            res.status(404).send("email doesn't exist")
+            return
+        }
+        if (usersFromDB.password !== password) {
+            res.status(400).send("wrong password")
+            return
+        }
+        res.send(
+            usersFromDB
+        )
     } catch (error) {
-        res.sendStatus(500);
+        res.status(error?.status).send({ error: error.msg });
     }
 };
 
-const addUserController = async function (req, res) {
+const SignUpController = async function (req, res) {
     const newUser = req.body
-    const userdb = new User(newUser)
     try {
+        const checkIfEmailExists = await User.findOne({ email: newUser.email })
+
+        if (checkIfEmailExists) {
+            console.log("test");
+            throw new Error("email already exists")
+        }
+        const userdb = new User(newUser)
         const dbResponse = await userdb.save()
         res.send(dbResponse)
     } catch (error) {
@@ -21,4 +38,4 @@ const addUserController = async function (req, res) {
 
 };
 
-module.exports = { getUsersController, addUserController };
+module.exports = { SignInController, SignUpController };
