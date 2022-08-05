@@ -41,7 +41,7 @@ const SignUp = ({ saveUserLocally }) => {
       />
       <br />
       <input
-        type="text"
+        type="password"
         value={user.password}
         placeholder="Password"
         onChange={(e) => handleInput("password", e.target.value)}
