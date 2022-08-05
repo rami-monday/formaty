@@ -1,23 +1,11 @@
 import React from "react";
-import { SignInApiManager } from "../services/user";
+import { SignInApiManager } from "../../services/user";
 
 const SignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   
   const handleClick = async function () {
-    const dbRes = await SignInApiManager();
-    let isFound = false;
-    for (let i = 0; i < dbRes.length; i++) {
-      if (user.email === dbRes[i].email) {
-        if (user.password === dbRes[i].password) {
-          alert("yay you are a user");
-          isFound = true;
-        }
-      }
-    }
-    if (!isFound) {
-      alert("Either your email or password are wrong");
-    }
+    const dbRes = await SignInApiManager(user);
     setUser({ email: "", password: "" });
   };
   const handleInput = function (property, value) {
