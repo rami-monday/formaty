@@ -2,7 +2,6 @@ const User = require("../models/user.model")
 
 const SignInController = async function (req, res) {
     const { email, password } = req.body
-    console.log(email, password);
     try {
         const usersFromDB = await User.findOne({ email: email })
         if (!usersFromDB) {
