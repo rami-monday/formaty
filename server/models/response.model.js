@@ -7,4 +7,4 @@ const ResponseSchema = new Schema({
     inputValues : String
 })
 const Response = mongoose.model('response',ResponseSchema)
-module.exports = Response
+module.exports = Response  
