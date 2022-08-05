@@ -1,11 +1,15 @@
-import React from "react";
+import React,{useState} from "react";
 import { SignInApiManager } from "../../services/user";
+
 
 const SignIn = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   
   const handleClick = async function () {
     const dbRes = await SignInApiManager(user);
+    if (dbRes) {
+      alert("you are a user and your name is "+dbRes.email)
+    }
     setUser({ email: "", password: "" });
   };
   const handleInput = function (property, value) {

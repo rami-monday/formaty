@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/";
+const url = "http://localhost:3001";
 
 export const SignInApiManager = async function (user) {
   try {
-    const response = await axios.get(`${url}/user/signIn`,user);
+    const response = await axios.put(`${url}/user/signIn`,user);
     return response.data
   } catch (error) {
     alert(JSON.stringify(error));
