@@ -1,15 +1,18 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SignInApiManager } from "../../services/user";
 
-
-const SignIn = () => {
+const SignIn = ({ saveUserLocally }) => {
   const [user, setUser] = useState({ email: "", password: "" });
+  const navigator = useNavigate();
   
   const handleClick = async function () {
     const dbRes = await SignInApiManager(user);
     if (dbRes) {
-      alert("you are a user and your name is "+dbRes.email)
+      alert("you are a user and your name is " + dbRes.email);
     }
+    saveUserLocally(dbRes);
+    navigator("/dashboard");
     setUser({ email: "", password: "" });
   };
   const handleInput = function (property, value) {
