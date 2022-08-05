@@ -11,13 +11,13 @@ const inputTypeComponenet = {
   number: NumberInput,
 };
 
-const InputField = ({ inputField }) => {
+const InputField = ({ inputField, onChange, value }) => {
   const { type, label } = inputField;
   const Component = inputTypeComponenet[type];
   return (
     <div>
       <h2>{label}</h2>
-      <Component />
+      <Component onChange={onChange} value={value} />
     </div>
   );
 };
