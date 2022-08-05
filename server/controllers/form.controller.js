@@ -22,9 +22,13 @@ const getOneFormById = async function (req, res) {
 
 const addFormController = async function (req, res) {
   const newForm = req.body;
+  newForm.dateCreated = Date.now();
+  newForm.status = "active";
+
   const formDb = new Form(newForm);
   try {
     const dbResponse = await formDb.save();
+    console.log(dbResponse);
     res.send(dbResponse);
   } catch (error) {
     res.sendStatus(500);

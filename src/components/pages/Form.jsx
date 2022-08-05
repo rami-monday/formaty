@@ -11,6 +11,8 @@ const Form = () => {
   const getFormFromDb = async () => {
     const dbForm = await getOneFormById(formId);
     setForm(dbForm);
+    const updatedValues = [...values];
+    dbForm.inputFields.forEach((input, i) => (updatedValues[i] = ""));
   };
 
   const handleInput = (index, value) => {
@@ -21,15 +23,12 @@ const Form = () => {
 
   useEffect(() => {
     getFormFromDb();
-    const updatedValues = [];
-    form.inputFields.forEach((input, i) => (updatedValues[i] = ""));
-    setValues(updatedValues);
-  }, [formId]);
+  }, []);
 
   return (
     <div>
-      Form {form.title}
-      {form?.inputFields.map((input, i) => (
+     {form.title}
+      {form?.inputFields?.map((input, i) => (
         <InputField
           key={i}
           inputField={input}
