@@ -20,9 +20,12 @@ const SignIn = ({ saveUserLocally }) => {
     userTryingToLogin[property] = value;
     setUser(userTryingToLogin);
   };
+  const test = function () {
+    navigator("/signUp")
+  }
   return (
     <div>
-      <h1>Please Log In</h1>
+      <h1>Please Sign In</h1>
       <br />
       <input
         type="text"
@@ -37,7 +40,7 @@ const SignIn = ({ saveUserLocally }) => {
       />
       <br />
       <input
-        type="text"
+        type="password"
         value={user.password}
         placeholder="Password"
         onChange={(e) => handleInput("password", e.target.value)}
@@ -49,6 +52,10 @@ const SignIn = ({ saveUserLocally }) => {
       />
       <br />
       <button onClick={handleClick}>Log In</button>
+      <div>
+      <p>If you don't have an acount register </p>
+      <button onClick={test}>here</button>
+      </div>
     </div>
   );
 };
