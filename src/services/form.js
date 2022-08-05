@@ -2,7 +2,7 @@ import axios from "axios";
 
 const url = "http://localhost:3001/";
 
-export const getUserFormsController = async function (userId) {
+export const getUserForms = async function (userId) {
   try {
     const response = await axios.get(`${url}form/getUserForms/${userId}`);
     return response.data;
@@ -20,7 +20,7 @@ export const getOneFormById = async function (formId) {
   }
 };
 
-export const addFormController = async function (form) {
+export const addForm = async function (form) {
   try {
     const response = await axios.post(`${url}form/addForm`, form);
     return response.data;
