@@ -7,7 +7,7 @@ export const getUserFormsController = async function() {
         const response = await axios.get(`${url}form/getUserForms`)
         return response.data
     } catch (error) {
-        res.sendstatus(500)
+        alert(JSON.stringify(error))
     }
 }
 
@@ -16,7 +16,7 @@ export const getOneFormById = async function() {
         const response = await axios.get(`${url}form/getFormById`)
         return response.data
     } catch (error) {
-        res.sendstatus(500)
+        alert(JSON.stringify(error))
     }
 }
 
@@ -25,6 +25,6 @@ export const addFormController = async function() {
         const response = await axios.post(`${url}form/addForm`)
         return response.data
     } catch (error) {
-        res.sendstatus(500)
+        alert(JSON.stringify(error))
     }
 }
