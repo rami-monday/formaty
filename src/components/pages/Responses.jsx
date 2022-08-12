@@ -5,7 +5,7 @@ import { getResponses } from "../../services/responses";
 
 const Responses = ({ user }) => {
   const { formId } = useParams();
-  const [form, setForm] = useState({inputFields:[]});
+  const [form, setForm] = useState({ inputFields: [] });
   const [responses, setResponses] = useState([]);
   const getFromFromDB = async function (formId) {
     const form = await getOneFormById(formId);
@@ -21,24 +21,27 @@ const Responses = ({ user }) => {
     getFromFromDB(formId);
     getResponsesFromDB(user._id, formId);
   }, [formId, user._id]);
-
+  console.log(responses);
   return (
     <div>
-      {form.inputFields.map((field, i) => (
-        <div key={i}>
-          The question : {field.label} <br /> the answers are:
-          <div>
-            {responses.map((response, j) => {
-              return (
-                <div key={j}>
-                  {j + 1}.{response.inputValues[i]}
-                </div>
-              );
-            })}
-          </div>
-          <br />
-        </div>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            {form.inputFields.map((field, i) => (
+              <th key={i}>{field.label}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {responses.map((response, i) =>
+              response.inputValues.map((input) => {
+                return <td key={input + i}>{input}</td>;
+              })
+            )}
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

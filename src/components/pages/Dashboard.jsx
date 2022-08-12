@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../services/form";
-
+import Copier from "../subComponents/Copier";
 const Dashboard = ({ user }) => {
   const navigate = useNavigate()
   const [forms, setForms] = useState([])
 
   const getUserFormsFromDb =async function () {
     try {
-      console.log("1");
       const userForms = await getUserForms(user._id)
       setForms(userForms)
     } catch (error) {
       alert(JSON.stringify(error))
     }
   }
+const checkIfUser = function () {
+  if (user) {
+    console.log('yazeed');
+  }else{
+    console.log("hvadsjkhavf");
+    navigator("/signIn")
+  }
+}
 
   useEffect(() => {
     getUserFormsFromDb()
-    console.log("2");
+    checkIfUser()
+    console.log();
   },[])
 
   return <div>{user.email}
@@ -29,6 +37,7 @@ const Dashboard = ({ user }) => {
           <div className="userForm">
               <h2>{form.title}</h2>
               <h6>{form._id}</h6>
+              <Copier formId ={form._id}/>
               <button onClick={()=>navigate("/responses/"+form._id)}>View Responses</button>
           </div>
         </div>)

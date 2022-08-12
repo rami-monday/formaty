@@ -5,15 +5,20 @@ import { SignInApiManager } from "../../services/user";
 const SignIn = ({ saveUserLocally }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const navigator = useNavigate();
-  
+
   const handleClick = async function () {
-    const dbRes = await SignInApiManager(user);
-    if (dbRes) {
-      alert("you are a user and your name is " + dbRes.email);
+    if (user.email && user.password) {
+
+      const dbRes = await SignInApiManager(user);
+      if (dbRes) {
+        saveUserLocally(dbRes);
+        navigator("/dashboard");
+        setUser({ email: "", password: "" });
+        
+      }
+    } else {
+      alert("make sure the you have filled all the fields");
     }
-    saveUserLocally(dbRes);
-    navigator("/dashboard");
-    setUser({ email: "", password: "" });
   };
   const handleInput = function (property, value) {
     const userTryingToLogin = { ...user };
@@ -21,8 +26,8 @@ const SignIn = ({ saveUserLocally }) => {
     setUser(userTryingToLogin);
   };
   const test = function () {
-    navigator("/signUp")
-  }
+    navigator("/signUp");
+  };
   return (
     <div>
       <h1>Please Sign In</h1>
@@ -53,8 +58,8 @@ const SignIn = ({ saveUserLocally }) => {
       <br />
       <button onClick={handleClick}>Log In</button>
       <div>
-      <p>If you don't have an acount register </p>
-      <button onClick={test}>here</button>
+        <p>If you don't have an acount register </p>
+        <button onClick={test}>here</button>
       </div>
     </div>
   );
