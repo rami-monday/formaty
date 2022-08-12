@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../style/inputFields/FormBuilder.css";
 
 const FormBuilder = ({ user }) => {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("form title");
   const [deadline, setDeadline] = useState("");
   const [inputFields, setInputFields] = useState([]);
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ const FormBuilder = ({ user }) => {
         <input
           className="labelEditor"
           type="text"
-          value={title || "Form title"}
+          value={title}
           onChange={handleInput}
         />
         <input

@@ -39,11 +39,11 @@ const Dashboard = ({ user }) => {
       <div className="dashBoardHeader">
         <div className="dashBoardUserInfo">
           <p>UserName: {user?.email}</p>
-          <p>ID: {user?._id}</p>
         </div>
         <div className="dashBoardNavigation">
           <button onClick={() => navigate("/formBuilder")}>Add New Form</button>
         </div>
+
       </div>
       <div className="userForms">
         {forms?.map((form, i) => (
@@ -55,7 +55,7 @@ const Dashboard = ({ user }) => {
               <button onClick={() => handleDeleteFormById(form._id)}>
                 delete Form
               </button>
-              <button onClick={() => navigate("/responses" + form._id)}>
+              <button onClick={() => navigate("/responses/" + form._id)}>
                 View Responses
               </button>
             </div>
