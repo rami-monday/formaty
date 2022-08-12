@@ -29,3 +29,12 @@ export const addForm = async function(form) {
         alert(JSON.stringify(error));
     }
 };
+
+export const deletFormById = async function(formId) {
+    try {
+        const response = await axios.delete(`${url}form/deleteFormById/${formId}`)
+        return response.data;
+    } catch (error) {
+        alert(JSON.stringify(error));
+    }
+}

@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+}
+
+.mainContainer {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    justify-items: center;
+    background-color: #256D85;
+}
+
+.header {
+    background-color: #002B5B;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 0 10px #1b1b1b;
+}
+
+.header label {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.header button {
+    width: 75px;
+}
+
+.signIn {
+    display: grid;
+    width: 40%;
+    grid-template-rows: repeat(1fr, 3);
+    justify-items: center;
+    align-items: center;
+}
+
+.headerNavigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.keepMeSignedInContainer {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.signIn input {
+    width: 250px;
+    height: 30px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    border: none;
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+.signInHeaderContainer {
+    color: white;
+}
+
+.logInBtnContainer button {
+    width: 100px;
+    height: 25px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.4s ease all;
+}
+
+.logInBtnContainer button:hover {
+    background-color: gray;
+    color: white;
+}
+
+.headerNavigationItems {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.headerNavigationItems a {
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    transition: 0.4s ease all;
+}
+
+.headerNavigationItems a:hover {
+    background-color: #256D85;
+}
