@@ -28,7 +28,6 @@ const addFormController = async function (req, res) {
   const formDb = new Form(newForm);
   try {
     const dbResponse = await formDb.save();
-    console.log(dbResponse);
     res.send(dbResponse);
   } catch (error) {
     res.sendStatus(500);
