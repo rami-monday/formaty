@@ -34,4 +34,14 @@ const addFormController = async function(req, res) {
     }
 };
 
-module.exports = { getUserFormsController, addFormController, getOneFormById };
+const deletFormById = async function(req, res) {
+    const { formId } = req.params;
+    try {
+        const deletedForm = await Form.findByIdAndDelete(formId);
+        res.send(deletedForm);
+    } catch (error) {
+        res.statusCode(500);
+    }
+}
+
+module.exports = { deletFormById, getUserFormsController, addFormController, getOneFormById };
