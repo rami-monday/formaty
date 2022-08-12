@@ -1,8 +1,9 @@
 import React from 'react'
+import "../style/inputFields/TextInput.css"
 
-const NumberInput = () => {
+const NumberInput = (props) => {
   return (
-<input type="number" />
+<input className='textInput' type="number" {...props} />
   )
 }
 

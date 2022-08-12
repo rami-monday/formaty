@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputFieldEditor from "../inputfields/InputFieldEditor";
 import { addForm } from "../../services/form";
 import { useNavigate } from "react-router-dom";
+import "../style/inputFields/FormBuilder.css";
 
 const FormBuilder = ({ user }) => {
   const [title, setTitle] = useState("");
@@ -41,10 +42,21 @@ const FormBuilder = ({ user }) => {
   };
 
   return (
-    <div>
-      <h2>Form title</h2>
-      <input type="text" value={title} onChange={handleInput} />
-      <input type="date" value={deadline} onChange={handleDateInput} />
+    <div className="formBuilder">
+      <div className="formHeaders">
+        <input
+          className="labelEditor"
+          type="text"
+          value={title || "Form title"}
+          onChange={handleInput}
+        />
+        <input
+          className="labelEditor"
+          type="date"
+          value={deadline}
+          onChange={handleDateInput}
+        />
+      </div>
       {inputFields.map((input, i) => (
         <InputFieldEditor
           key={i}

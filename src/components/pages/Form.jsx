@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import InputField from "../inputfields/InputField";
+import "../style/inputFields/FormBuilder.css";
 
 const Form = () => {
   const { formId } = useParams();
@@ -26,8 +27,8 @@ const Form = () => {
   }, []);
 
   return (
-    <div>
-     {form.title}
+    <div className="formBuilder">
+      <h1> {form.title}</h1>
       {form?.inputFields?.map((input, i) => (
         <InputField
           key={i}

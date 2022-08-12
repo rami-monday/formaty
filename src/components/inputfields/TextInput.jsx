@@ -1,8 +1,9 @@
 import React from 'react'
+import "../style/inputFields/TextInput.css"
 
-const TextInput = () => {
+const TextInput = (props) => {
     return (
-        <input type={"text"} />
+        <input className='textInput' type={"text"} {...props} />
     )
 }
 

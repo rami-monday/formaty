@@ -3,6 +3,7 @@ import DateInput from "./DateInput";
 import TextInput from "./TextInput";
 import LongTextInput from "./LongTextInput";
 import NumberInput from "./NumberInput";
+import "../style/inputFields/InputFieldEditor.css"
 
 const inputFieldsTypes = ["text", "longText", "number", "date"];
 
@@ -25,13 +26,15 @@ const InputFieldEditor = ({ inputField, onChange, index }) => {
 
   const Component = inputTypeComponent[newField.type] || <div />;
   return (
-    <div>
+    <div className="inputFieldContainer">
       <div className="fieldConfig">
         <input
+        className="labelEditor"
           value={newField.label}
           onChange={({ target }) => handleChange("label", target.value)}
         />
         <select
+        className="typeOptions"
           value={newField.type}
           onChange={({ target }) => handleChange("type", target.value)}
         >
@@ -42,7 +45,7 @@ const InputFieldEditor = ({ inputField, onChange, index }) => {
           ))}
         </select>
       </div>
-      <Component />
+      <Component placeholder="Your answer"/>
     </div>
   );
 };

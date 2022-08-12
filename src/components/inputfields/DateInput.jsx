@@ -1,9 +1,9 @@
-
 import React from 'react'
+import "../style/inputFields/TextInput.css"
 
-const DateInput = () => {
+const DateInput = (props) => {
     return (
-        <input type="date" />
+        <input className='textInput' type="date" {...props}/>
     )
 }
 

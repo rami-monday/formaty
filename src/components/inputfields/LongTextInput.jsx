@@ -1,8 +1,8 @@
 import React from 'react'
 
-const LongTextInput = () => {
+const LongTextInput = (props) => {
   return (
-<textarea name="" id="" cols="30" rows="10"></textarea>
+<textarea name="" id="" cols="30" rows="10" {...props}></textarea>
   )
 }
 
