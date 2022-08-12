@@ -1,9 +1,9 @@
 
 import React from 'react'
 
-const DateInput = () => {
+const DateInput = (props) => {
     return (
-        <input type="date" />
+        <input type="date" {...props}/>
     )
 }
 

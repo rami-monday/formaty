@@ -1,8 +1,8 @@
 import React from 'react'
 
-const NumberInput = () => {
+const NumberInput = (props) => {
   return (
-<input type="number" />
+<input type="number"  {...props}/>
   )
 }
 

@@ -1,8 +1,8 @@
 import React from 'react'
 
-const TextInput = () => {
+const TextInput = (props) => {
     return (
-        <input type={"text"} />
+        <input type={"text"}  {...props}/>
     )
 }
 

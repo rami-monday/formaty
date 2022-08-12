@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../services/form";
+import Copier from "../subComponents/Copier";
 import {deletFormById} from "../../services/form"
 
 const Dashboard = ({ user }) => {
@@ -9,6 +10,7 @@ const Dashboard = ({ user }) => {
 
     const getUserFormsFromDb = async function () {
       try {
+      if(!user) return
         const userForms = await getUserForms(user._id)
         setForms(userForms)
       } catch (error) {
@@ -16,9 +18,15 @@ const Dashboard = ({ user }) => {
       }
     }
 
-useEffect(()=> {
-  getUserFormsFromDb()
-},[])
+const checkIfUser = function () {
+  if (!user) {
+    navigate("/")
+  }
+}
+  useEffect(() => {
+    checkIfUser()
+    getUserFormsFromDb()
+  })
 
   return <div className="mainContainer">
     <div className="dashBoardHeader">
@@ -36,6 +44,7 @@ useEffect(()=> {
         <div className="userForm">
           <h2>{form.title}</h2>
           <h6>{form._id}</h6>
+          <Copier formId ={form._id}/>
           <button onClick={() => deletFormById(form._id)}>delete Form</button>
           <button onClick={() => navigate("/responses"+form._id)}>View Responses</button>
         </div>
