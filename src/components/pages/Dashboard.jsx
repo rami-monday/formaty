@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../services/form";
 import Copier from "../subComponents/Copier";
 import { deletFormById } from "../../services/form";
+import SignOut from "../subComponents/SignOut";
 
 const Dashboard = ({ user }) => {
   const [forms, setForms] = useState([]);
@@ -36,10 +37,12 @@ const Dashboard = ({ user }) => {
 
   return (
     <div className="mainContainer">
+     
       <div className="dashBoardHeader">
         <div className="dashBoardUserInfo">
           <p>UserName: {user?.email}</p>
-        </div>
+        </div> 
+        <SignOut/>
         <div className="dashBoardNavigation">
           <button onClick={() => navigate("/formBuilder")}>Add New Form</button>
         </div>
