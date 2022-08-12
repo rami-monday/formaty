@@ -8,7 +8,6 @@ const SignIn = ({ saveUserLocally }) => {
 
   const handleClick = async function () {
     if (user.email && user.password) {
-
       const dbRes = await SignInApiManager(user);
       if (dbRes) {
         saveUserLocally(dbRes);

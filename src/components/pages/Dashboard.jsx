@@ -8,6 +8,7 @@ const Dashboard = ({ user }) => {
 
   const getUserFormsFromDb =async function () {
     try {
+      if(!user) return
       const userForms = await getUserForms(user._id)
       setForms(userForms)
     } catch (error) {
@@ -15,21 +16,16 @@ const Dashboard = ({ user }) => {
     }
   }
 const checkIfUser = function () {
-  if (user) {
-    console.log('yazeed');
-  }else{
-    console.log("hvadsjkhavf");
-    navigator("/signIn")
+  if (!user) {
+    navigate("/")
   }
 }
-
   useEffect(() => {
-    getUserFormsFromDb()
     checkIfUser()
-    console.log();
-  },[])
+    getUserFormsFromDb()
+  })
 
-  return <div>{user.email}
+  return <div>{user?.email}
     <button onClick={()=>navigate("/formBuilder")}>Add New Form</button>
     <div className="userForms">
       {
