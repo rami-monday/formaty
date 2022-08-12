@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import InputField from "../inputfields/InputField";
-
+import { addResponse } from "../../services/responses";
 const Form = () => {
   const { formId } = useParams();
   const [form, setForm] = useState({});
@@ -19,15 +19,22 @@ const Form = () => {
     const updatedValues = [...values];
     updatedValues[index] = value;
     setValues(updatedValues);
+    console.log(values);
   };
 
   useEffect(() => {
     getFormFromDb();
   }, []);
-
+  const handleClick = async function () {
+    const newResponse = await addResponse({
+      formId: formId,
+      inputValues: values,
+    });
+    console.log(values);
+  };
   return (
     <div>
-     {form.title}
+      {form.title}
       {form?.inputFields?.map((input, i) => (
         <InputField
           key={i}
@@ -36,6 +43,8 @@ const Form = () => {
           onChange={({ target }) => handleInput(i, target.value)}
         />
       ))}
+      <br />
+      <button onClick={handleClick}>submit</button>
     </div>
   );
 };

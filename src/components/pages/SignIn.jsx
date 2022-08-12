@@ -6,12 +6,19 @@ import "../style/signIn.css"
 const SignIn = ({ saveUserLocally }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const navigator = useNavigate();
-  
+
   const handleClick = async function () {
-    const dbRes = await SignInApiManager(user);
-    saveUserLocally(dbRes);
-    navigator("/dashboard");
-    setUser({ email: "", password: "" });
+    if (user.email && user.password) {
+      const dbRes = await SignInApiManager(user);
+      if (dbRes) {
+        saveUserLocally(dbRes);
+        navigator("/dashboard");
+        setUser({ email: "", password: "" });
+        
+      }
+    } else {
+      alert("make sure the you have filled all the fields");
+    }
   };
   const handleInput = function (property, value) {
     const userTryingToLogin = { ...user };
@@ -19,8 +26,8 @@ const SignIn = ({ saveUserLocally }) => {
     setUser(userTryingToLogin);
   };
   const test = function () {
-    navigator("/signUp")
-  }
+    navigator("/signUp");
+  };
   return (
     <div className="mainContainer">
       <div className="header">
