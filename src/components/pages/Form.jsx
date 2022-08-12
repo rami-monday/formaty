@@ -4,6 +4,7 @@ import { getOneFormById } from "../../services/form";
 import InputField from "../inputfields/InputField";
 import "../style/inputFields/FormBuilder.css";
 
+import { addResponse } from "../../services/responses";
 const Form = () => {
   const { formId } = useParams();
   const [form, setForm] = useState({});
@@ -20,12 +21,19 @@ const Form = () => {
     const updatedValues = [...values];
     updatedValues[index] = value;
     setValues(updatedValues);
+    console.log(values);
   };
 
   useEffect(() => {
     getFormFromDb();
   }, []);
-
+  const handleClick = async function () {
+    const newResponse = await addResponse({
+      formId: formId,
+      inputValues: values,
+    });
+    console.log(values);
+  };
   return (
     <div className="formBuilder">
       <h1> {form.title}</h1>
@@ -37,6 +45,8 @@ const Form = () => {
           onChange={({ target }) => handleInput(i, target.value)}
         />
       ))}
+      <br />
+      <button onClick={handleClick}>submit</button>
     </div>
   );
 };

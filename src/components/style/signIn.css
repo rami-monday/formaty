@@ -8,23 +8,23 @@ body {
     display: grid;
     grid-template-rows: 10% 90%;
     justify-items: center;
-    background-color: #256D85;
+    background-color: #FEF9EF;
 }
 
 .header {
-    background-color: #002B5B;
+    background-color: #FEF9EF;
     width: 100%;
     display: grid;
     justify-items: center;
     align-items: center;
     grid-template-columns: 1fr 1fr;
-    box-shadow: 0 0 10px #1b1b1b;
+    box-shadow: 0 0 5px #929292;
 }
 
 .header label {
     font-size: 2.5rem;
     font-weight: bold;
-    color: white;
+    color: #17C3B2;
 }
 
 .header button {
@@ -41,7 +41,7 @@ body {
 
 .headerNavigation {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .keepMeSignedInContainer {
@@ -51,24 +51,34 @@ body {
     align-items: center;
 }
 
+.signIn {
+    box-shadow: 0 0 5px #929292;
+    background-color: #FFF;
+    border-radius: 10px;
+    margin-top: 12.5%;
+    height: 350px;
+}
+
 .signIn input {
     width: 250px;
     height: 30px;
     margin-bottom: 10px;
     border-radius: 20px;
-    border: none;
+    border: 2px solid #17C3B2;
     padding-left: 15px;
     font-weight: bold;
 }
 
 .signInHeaderContainer {
-    color: white;
+    color: #17C3B2;
 }
 
 .logInBtnContainer button {
     width: 100px;
-    height: 25px;
-    border: 2px solid gray;
+    height: 30px;
+    border: 2px solid #17C3B2;
+    background-color: #FFF;
+    color: rgb(117, 117, 117);
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
@@ -76,13 +86,13 @@ body {
 }
 
 .logInBtnContainer button:hover {
-    background-color: gray;
+    background-color: #17C3B2;
     color: white;
 }
 
 .headerNavigationItems {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
     margin-right: 20px;
@@ -91,10 +101,31 @@ body {
 .headerNavigationItems a {
     font-size: large;
     font-weight: bold;
-    color: white;
-    transition: 0.4s ease all;
+    text-decoration: none;
+    color: rgb(117, 117, 117);
+    transition: 0.2s ease all;
+    margin-left: 40px;
 }
 
 .headerNavigationItems a:hover {
-    background-color: #256D85;
+    border-bottom: 2px solid #17C3B2;
+    color: #17C3B2;
+}
+
+.signUpBtn {
+    width: 120px;
+    height: 30px;
+    background-color: #17C3B2;
+    color: #FFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.4s ease all;
+}
+
+.signUpBtn:hover {
+    background-color: #FFF;
+    border: 2px solid #17C3B2;
+    color: #929292;
 }
