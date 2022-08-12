@@ -1,26 +1,24 @@
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
 import Form from "./components/pages/Form";
 import "./App.css";
-import { useEffect, useState } from "react";
 import Home from "./components/pages/Home";
 import Dashboard from "./components/pages/Dashboard";
 import FormBuilder from "./components/pages/FormBuilder";
 import Responses from "./components/pages/Responses";
 
+const savedUser = JSON.parse(localStorage.getItem("user"));
+
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(savedUser);
 
   const saveUserLocally = (user) => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
   };
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    setUser(user);
-  }, []);
   return (
     <div className="App">
       <BrowserRouter>
