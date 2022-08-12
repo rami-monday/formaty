@@ -4,20 +4,20 @@ import TextInput from "./TextInput";
 import LongTextInput from "./LongTextInput";
 import NumberInput from "./NumberInput";
 
-const inputTypeComponenet = {
+const inputTypeComponent = {
   date: DateInput,
   text: TextInput,
   longText: LongTextInput,
   number: NumberInput,
 };
 
-const InputField = ({ inputField }) => {
+const InputField = ({ inputField, onChange, value }) => {
   const { type, label } = inputField;
-  const Component = inputTypeComponenet[type];
+  const Component = inputTypeComponent[type] || <div />;
   return (
     <div>
       <h2>{label}</h2>
-      <Component />
+      <Component onChange={onChange} value={value} />
     </div>
   );
 };

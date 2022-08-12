@@ -17,7 +17,10 @@ function App() {
     localStorage.setItem("user", JSON.stringify(user));
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    setUser(user);
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>
@@ -34,7 +37,10 @@ function App() {
           <Route path="/form/:formId" element={<Form />} />
           <Route path="/dashboard" element={<Dashboard user={user} />} />
           <Route path="/formBuilder" element={<FormBuilder user={user} />} />
-          <Route path="/responses/:formId" element={<Responses user={user} />} />
+          <Route
+            path="/responses/:formId"
+            element={<Responses user={user} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
