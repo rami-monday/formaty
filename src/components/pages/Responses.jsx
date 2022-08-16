@@ -33,13 +33,11 @@ const Responses = ({ user }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            {responses.map((response, i) =>
-              response.inputValues.map((input) => {
-                return <td key={input + i}>{input}</td>;
-              })
-            )}
-          </tr>
+          {responses.map((response, i) => {
+            response.inputValues.map((input) => {
+              return <td key={input + i}>{input}</td>;
+            });
+          })}
         </tbody>
       </table>
     </div>

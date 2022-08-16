@@ -19,13 +19,6 @@ body {
     align-items: center;
 }
 
-.keepMeSignedInContainer {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    justify-items: center;
-    align-items: center;
-}
-
 .signUp {
     box-shadow: 0 0 5px #929292;
     background-color: #FFF;
