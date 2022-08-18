@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import { getResponses } from "../../services/responses";
+import "../style/Responses.css"
 
 const Responses = ({ user }) => {
   const { formId } = useParams();
@@ -21,7 +22,6 @@ const Responses = ({ user }) => {
     getFromFromDB(formId);
     getResponsesFromDB(user._id, formId);
   }, [formId, user._id]);
-  console.log(responses);
   return (
     <div>
       <table>
@@ -34,9 +34,13 @@ const Responses = ({ user }) => {
         </thead>
         <tbody>
           {responses.map((response, i) => {
-            response.inputValues.map((input) => {
-              return <td key={input + i}>{input}</td>;
-            });
+            return (
+              <tr key={i}>
+                {response.inputValues.map((value, j) => {
+                  return <td key={j}>{value}</td>;
+                })}
+              </tr>
+            );
           })}
         </tbody>
       </table>

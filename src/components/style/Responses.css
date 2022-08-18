@@ -1,0 +1,14 @@
+table{
+
+    background-color: rgb(116, 116, 116);
+}
+th{
+    background-color: #17C3B2;
+    /* display: grid; */
+    /* grid-template-rows: 1fr; */
+    justify-items: center;
+    align-items: center;
+}
+tr{
+    background-color: #FEF9EF;
+}
