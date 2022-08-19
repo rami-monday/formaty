@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import { getResponses } from "../../services/responses";
-import "../style/Responses.css"
+import { ExcelExport } from "@progress/kendo-react-excel-export";
+import "../style/Responses.css";
 
 const Responses = ({ user }) => {
   const { formId } = useParams();
@@ -22,28 +23,50 @@ const Responses = ({ user }) => {
     getFromFromDB(formId);
     getResponsesFromDB(user._id, formId);
   }, [formId, user._id]);
+
+  const mappedResponses = responses.map((response) => {
+    if (response.inputValues.length) {
+      const newInputValues = {};
+      response.inputValues.forEach((value, i) => {
+        newInputValues[form.inputFields[i].label] = value;
+      });
+      return newInputValues;
+    }
+    return response.inputValues;
+  });
+  const _export = React.useRef(null);
+
+  const excelExport = () => {
+    if (_export.current !== null) {
+      _export.current.save();
+    }
+  };
+
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            {form.inputFields.map((field, i) => (
-              <th key={i}>{field.label}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {responses.map((response, i) => {
-            return (
-              <tr key={i}>
-                {response.inputValues.map((value, j) => {
-                  return <td key={j}>{value}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <ExcelExport data={mappedResponses} ref={_export}>
+        <button onClick={excelExport}>export</button>
+        <table>
+          <thead>
+            <tr>
+              {form.inputFields.map((field, i) => (
+                <th key={i}>{field.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {mappedResponses.map((response, i) => {
+              return (
+                <tr key={i}>
+                  {Object.entries(response).map(([key, value]) => {
+                    return <td key={key + value}>{value}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </ExcelExport>
     </div>
   );
 };
