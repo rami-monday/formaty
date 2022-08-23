@@ -1,14 +1,40 @@
-table{
-
-    background-color: rgb(116, 116, 116);
+table {
+  background-color: rgb(116, 116, 116);
 }
-th{
-    background-color: #17C3B2;
-    /* display: grid; */
-    /* grid-template-rows: 1fr; */
-    justify-items: center;
-    align-items: center;
+th {
+  background-color: #17c3b2;
+  /* display: grid; */
+  /* grid-template-rows: 1fr; */
+  justify-items: center;
+  align-items: center;
 }
-tr{
-    background-color: #FEF9EF;
+tr {
+  background-color: #fef9ef;
+}
+.main {
+  height: 100%;
+  width: 100%;
+}
+.tableContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  align-items: center;
+  margin-top: 15%;
+  margin-bottom: 2%;
+}
+body {
+  background-color: white;
+}
+.exportButton {
+  width: 150px;
+  height: 50px;
+  color: rgb(117, 117, 117);
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.4s ease all;
+}
+.exportButton:hover {
+  background-color: #17c3b2;
+  color: white;
 }

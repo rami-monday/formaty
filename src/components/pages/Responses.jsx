@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import { getResponses } from "../../services/responses";
-import { ExcelExport } from "@progress/kendo-react-excel-export";
+import { CSVLink } from "react-csv";
 import "../style/Responses.css";
 
 const Responses = ({ user }) => {
@@ -34,18 +34,9 @@ const Responses = ({ user }) => {
     }
     return response.inputValues;
   });
-  const _export = React.useRef(null);
-
-  const excelExport = () => {
-    if (_export.current !== null) {
-      _export.current.save();
-    }
-  };
-
   return (
-    <div>
-      <ExcelExport data={mappedResponses} ref={_export}>
-        <button onClick={excelExport}>export</button>
+    <div className="main">
+      <div className="tableContainer">
         <table>
           <thead>
             <tr>
@@ -66,7 +57,8 @@ const Responses = ({ user }) => {
             })}
           </tbody>
         </table>
-      </ExcelExport>
+      </div>
+      <CSVLink data={mappedResponses} className= "exportButton">Export </CSVLink>
     </div>
   );
 };
