@@ -70,7 +70,7 @@ const Dashboard = ({ user }) => {
         ))}
       </div>
     </div>
-    </div>
+  
   );
 };
 
