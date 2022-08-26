@@ -1,4 +1,6 @@
 import React from 'react'
+import '../style/Buttons/Copier.css'
+import { FaCopy } from 'react-icons/fa';
 
 const Copier = ({formId}) => {
     
@@ -11,7 +13,7 @@ const Copier = ({formId}) => {
     }
 
   return (
-    <button onClick={copyToClipboard}>copier</button>
+    <button className='CopierBtn' onClick={copyToClipboard}><FaCopy></FaCopy></button>
   )
 }
 

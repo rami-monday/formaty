@@ -1,0 +1,71 @@
+.userForms{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100vw;
+
+}
+
+.userForm{
+    display: grid;
+    min-height: 140px;
+    grid-template-columns: 12fr 1fr;
+    justify-items: center;
+    margin: 2.5rem 0 2.5rem 0;
+    align-items: center;
+    box-shadow: 0 0 10px #929292;
+    border-radius: 10px;
+    width: 60%;
+    background-color: white;
+}
+
+.userFormBtns{
+    display:  grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.sideIcons{
+    font-size: 20px;
+    color: #929292;
+    background-color: rgba(146, 146, 146, 0);
+    margin: 5px;
+    border: none;
+    transition: ease all 0.4s;
+}
+
+.sideIcons:hover{
+font-size: 24px;
+color: black;
+cursor: pointer;
+}
+
+.dashBoardHeader{
+    display: grid;
+    justify-items: center;
+    align-items: center;
+}
+
+.dashBoardNavigation{
+    display: grid;
+    height: 140px;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin: 2.5rem 0 2.5rem 0;
+    align-items: center;
+    box-shadow: 0 0 10px #929292;
+    font-size: 30px;
+    border-radius: 10px;
+    width: 60%;
+    background-color: white;
+    color: #929292;
+    transition: ease all 0.4s;
+}
+
+.dashBoardNavigation:hover{
+    cursor: pointer;
+    font-size: 40px;
+    color: black;
+    background-color: #f0f0f0;
+}

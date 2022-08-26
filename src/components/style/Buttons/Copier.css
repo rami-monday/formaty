@@ -1,0 +1,15 @@
+
+.CopierBtn{
+    font-size: 20px;
+    color: #929292;
+    background-color: rgba(146, 146, 146, 0);
+    margin: 5px;
+    border: none;
+    transition: ease all 0.4s;
+}
+
+.CopierBtn:hover{
+font-size: 24px;
+color: black;
+cursor: pointer;
+}
