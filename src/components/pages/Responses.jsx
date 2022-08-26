@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import { getResponses } from "../../services/responses";
-import { CSVLink } from "react-csv";
+// import { CSVLink } from "react-csv";
+import { DownloadTableExcel } from "react-export-table-to-excel";
 import "../style/Responses.css";
 
 const Responses = ({ user }) => {
@@ -34,10 +35,18 @@ const Responses = ({ user }) => {
     }
     return response.inputValues;
   });
+  const tableRef = useRef(null);
   return (
     <div className="main">
+      <DownloadTableExcel
+      filename={`${form.title}`}
+        sheet="Responses"
+        currentTableRef={tableRef.current}
+      >
+        <button> Export excel </button>
+      </DownloadTableExcel>
       <div className="tableContainer">
-        <table>
+        <table ref={tableRef}>
           <thead>
             <tr>
               {form.inputFields.map((field, i) => (
@@ -58,7 +67,7 @@ const Responses = ({ user }) => {
           </tbody>
         </table>
       </div>
-      <CSVLink data={mappedResponses} className= "exportButton">Export </CSVLink>
+      {/* <CSVLink data={mappedResponses} filename = {`${form.title}.xlsx`} className= "exportButton">Export </CSVLink> */}
     </div>
   );
 };
