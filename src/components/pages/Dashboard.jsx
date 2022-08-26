@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../services/form";
 import Copier from "../subComponents/Copier";
 import { deletFormById } from "../../services/form";
-import Header from "../subComponents/Header"
-import { FaTrash , FaClipboardList , FaPlus} from 'react-icons/fa';
-import "../style/Dashboard.css"
+import SignOut from "../subComponents/SignOut";
+import Header from "../subComponents/Header";
+import { FaTrash, FaClipboardList, FaPlus } from "react-icons/fa";
+import "../style/Dashboard.css";
 
 const Dashboard = ({ user }) => {
   const [forms, setForms] = useState([]);
@@ -35,37 +36,49 @@ const Dashboard = ({ user }) => {
   useEffect(() => {
     checkIfUser();
     getUserFormsFromDb();
-  },[]);
+  }, []);
 
   return (
-     <div className="mainContainer">
-      <Header></Header>
-    <div>
+    <div className="mainContainer">
+      <Header />
+      <div>
       <div className="dashBoardHeader">
         <div className="dashBoardUserInfo">
           <p>UserName: {user?.email}</p>
+          <SignOut />
         </div>
-        <div onClick={() => navigate("/formBuilder")} className="dashBoardNavigation">
-          <span><FaPlus></FaPlus></span>
+        <div
+          onClick={() => navigate("/formBuilder")}
+          className="dashBoardNavigation"
+        >
+          <span>
+            <FaPlus />
+          </span>
         </div>
       </div>
       <div className="userForms">
         {forms?.map((form, i) => (
           <div className="userForm" key={i}>
-              <h2>{form.title}</h2>
-              <div className="userFormBtns">
-                  <Copier formId={form._id} />
-                   <button className="sideIcons" onClick={() => handleDeleteFormById(form._id)}>
-                     <FaTrash></FaTrash>
-                    </button>
-                   <button className="sideIcons" onClick={() => navigate("/responses/" + form._id)}>
-                    <FaClipboardList></FaClipboardList>
-                    </button>
+            <h2>{form.title}</h2>
+            <div className="userFormBtns">
+              <Copier formId={form._id} />
+              <button
+                className="sideIcons"
+                onClick={() => handleDeleteFormById(form._id)}
+              >
+                <FaTrash></FaTrash>
+              </button>
+              <button
+                className="sideIcons"
+                onClick={() => navigate("/responses/" + form._id)}
+              >
+                <FaClipboardList></FaClipboardList>
+              </button>
             </div>
           </div>
         ))}
       </div>
-    </div>
+      </div>
     </div>
   );
 };

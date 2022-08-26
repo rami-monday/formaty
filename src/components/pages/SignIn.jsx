@@ -17,7 +17,6 @@ const SignIn = ({ saveUserLocally }) => {
         saveUserLocally(dbRes);
         navigator("/dashboard");
         setUser({ email: "", password: "" });
-        
       }
     } else {
       alert("make sure the you have filled all the fields");
@@ -33,34 +32,34 @@ const SignIn = ({ saveUserLocally }) => {
       <Header></Header>
       <div className="signIn">
         <div className="signInHeaderContainer">
-             <h1>Sign In</h1>       
+          <h1>Sign In</h1>
         </div>
         <div className="signInInputsContainer">
-           <input
-               type="text"
-                value={user.email}
-                 placeholder="Example@gmail.com"
-                   onChange={(e) => handleInput("email", e.target.value)}
-                    onKeyDown={(event) => {
-                  if (event.key === "Enter") {
-                     handleClick();
-                   }
-                 }}
-                />
-              <br />
-             <input
-                 type="password"
-                  value={user.password}
-                   placeholder="Password"
-                    onChange={(e) => handleInput("password", e.target.value)}
-                     onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                         handleClick();
-                       }
-                     }}
-                 />
-       </div>
-      {/* <div className="keepMeSignedInContainer">
+          <input
+            type="text"
+            value={user.email}
+            placeholder="Example@gmail.com"
+            onChange={(e) => handleInput("email", e.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                handleClick();
+              }
+            }}
+          />
+          <br />
+          <input
+            type="password"
+            value={user.password}
+            placeholder="Password"
+            onChange={(e) => handleInput("password", e.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                handleClick();
+              }
+            }}
+          />
+        </div>
+        {/* <div className="keepMeSignedInContainer">
          <input type="checkbox" />
          <span>Remember Me.</span>
       </div> */}

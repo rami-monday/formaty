@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import { getResponses } from "../../services/responses";
+// import { CSVLink } from "react-csv";
+import { DownloadTableExcel } from "react-export-table-to-excel";
+import "../style/Responses.css";
 
 const Responses = ({ user }) => {
   const { formId } = useParams();
@@ -21,27 +24,50 @@ const Responses = ({ user }) => {
     getFromFromDB(formId);
     getResponsesFromDB(user._id, formId);
   }, [formId, user._id]);
-  console.log(responses);
+
+  const mappedResponses = responses.map((response) => {
+    if (response.inputValues.length) {
+      const newInputValues = {};
+      response.inputValues.forEach((value, i) => {
+        newInputValues[form.inputFields[i].label] = value;
+      });
+      return newInputValues;
+    }
+    return response.inputValues;
+  });
+  const tableRef = useRef(null);
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            {form.inputFields.map((field, i) => (
-              <th key={i}>{field.label}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            {responses.map((response, i) =>
-              response.inputValues.map((input) => {
-                return <td key={input + i}>{input}</td>;
-              })
-            )}
-          </tr>
-        </tbody>
-      </table>
+    <div className="main">
+      <DownloadTableExcel
+      filename={`${form.title}`}
+        sheet="Responses"
+        currentTableRef={tableRef.current}
+      >
+        <button> Export excel </button>
+      </DownloadTableExcel>
+      <div className="tableContainer">
+        <table ref={tableRef}>
+          <thead>
+            <tr>
+              {form.inputFields.map((field, i) => (
+                <th key={i}>{field.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {mappedResponses.map((response, i) => {
+              return (
+                <tr key={i}>
+                  {Object.entries(response).map(([key, value]) => {
+                    return <td key={key + value}>{value}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      {/* <CSVLink data={mappedResponses} filename = {`${form.title}.xlsx`} className= "exportButton">Export </CSVLink> */}
     </div>
   );
 };
