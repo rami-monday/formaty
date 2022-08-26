@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignInApiManager } from "../../services/user";
 import "../style/signIn.css"
+import Header from "../subComponents/Header"
+import SecBtn from "../subComponents/SecBtn";
+
 
 const SignIn = ({ saveUserLocally }) => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -25,25 +28,9 @@ const SignIn = ({ saveUserLocally }) => {
     userTryingToLogin[property] = value;
     setUser(userTryingToLogin);
   };
-  const test = function () {
-    navigator("/signUp");
-  };
   return (
     <div className="mainContainer">
-      <div className="header">
-        <div className="headerLogo">
-          <label htmlFor="">Formaty</label>
-        </div>
-        <div className="headerNavigation">
-          <div className="headerNavigationItems">
-              <a href="">Home</a>
-               <a href="">About</a>
-               <a href="">Contact</a>
-               <a href="">Forms</a>
-          </div><div></div>
-            <button className="signUpBtn" onClick={test}>SignUp</button>
-        </div>
-      </div>
+      <Header></Header>
       <div className="signIn">
         <div className="signInHeaderContainer">
              <h1>Sign In</h1>       
@@ -78,7 +65,7 @@ const SignIn = ({ saveUserLocally }) => {
          <span>Remember Me.</span>
       </div> */}
       <div className="logInBtnContainer">
-         <button onClick={handleClick}>Log In</button>
+        <SecBtn btnText={"SignIn"} btnHandle={handleClick}> </SecBtn>
       </div>
       </div>
     </div>
