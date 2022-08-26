@@ -4,6 +4,9 @@ import { getUserForms } from "../../services/form";
 import Copier from "../subComponents/Copier";
 import { deletFormById } from "../../services/form";
 import SignOut from "../subComponents/SignOut";
+import Header from "../subComponents/Header"
+import { FaTrash , FaClipboardList , FaPlus} from 'react-icons/fa';
+import "../style/Dashboard.css"
 
 const Dashboard = ({ user }) => {
   const [forms, setForms] = useState([]);
@@ -36,35 +39,37 @@ const Dashboard = ({ user }) => {
   },[]);
 
   return (
-    <div className="mainContainer">
-     
+    
+      
+    <div>
+        <SignOut/>
+       
+      <Header></Header>
       <div className="dashBoardHeader">
         <div className="dashBoardUserInfo">
           <p>UserName: {user?.email}</p>
-        </div> 
-        <SignOut/>
-        <div className="dashBoardNavigation">
-          <button onClick={() => navigate("/formBuilder")}>Add New Form</button>
         </div>
-
+        <div onClick={() => navigate("/formBuilder")} className="dashBoardNavigation">
+          <span><FaPlus></FaPlus></span>
+        </div>
       </div>
       <div className="userForms">
         {forms?.map((form, i) => (
-          <div key={i}>
-            <div className="userForm">
+          <div className="userForm" key={i}>
               <h2>{form.title}</h2>
-              <h6>{form._id}</h6>
-              <Copier formId={form._id} />
-              <button onClick={() => handleDeleteFormById(form._id)}>
-                delete Form
-              </button>
-              <button onClick={() => navigate("/responses/" + form._id)}>
-                View Responses
-              </button>
+              <div className="userFormBtns">
+                  <Copier formId={form._id} />
+                   <button className="sideIcons" onClick={() => handleDeleteFormById(form._id)}>
+                     <FaTrash></FaTrash>
+                    </button>
+                   <button className="sideIcons" onClick={() => navigate("/responses/" + form._id)}>
+                    <FaClipboardList></FaClipboardList>
+                    </button>
             </div>
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

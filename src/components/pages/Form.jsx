@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import InputField from "../inputfields/InputField";
 import "../style/inputFields/FormBuilder.css";
+import PrimaryBtn from "../subComponents/PrimaryBtn"
+
 
 import { addResponse } from "../../services/responses";
 const Form = () => {
@@ -46,7 +48,7 @@ const Form = () => {
         />
       ))}
       <br />
-      <button onClick={handleClick}>submit</button>
+      <PrimaryBtn btnText={"Submit"} btnHandle={handleClick}></PrimaryBtn><br />
     </div>
   );
 };
