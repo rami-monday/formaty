@@ -3,22 +3,24 @@ import { useParams } from "react-router-dom";
 import { getOneFormById } from "../../services/form";
 import InputField from "../inputfields/InputField";
 import "../style/inputFields/FormBuilder.css";
+import PrimaryBtn from "../subComponents/PrimaryBtn"
+
 
 import { addResponse } from "../../services/responses";
 const Form = () => {
   const { formId } = useParams();
   const [form, setForm] = useState({});
-  const [values, setValues] = useState([]);
+  const [values, setValues] = useState({});
 
   const getFormFromDb = async () => {
     const dbForm = await getOneFormById(formId);
     setForm(dbForm);
     const updatedValues = [...values];
-    dbForm.inputFields.forEach((input, i) => (updatedValues[i] = ""));
+    dbForm.inputFields.forEach((input, i) => (updatedValues[input.label] = ""));
   };
 
   const handleInput = (index, value) => {
-    const updatedValues = [...values];
+    const updatedValues = { ...values };
     updatedValues[index] = value;
     setValues(updatedValues);
     console.log(values);
@@ -42,11 +44,11 @@ const Form = () => {
           key={i}
           inputField={input}
           value={values[i]}
-          onChange={({ target }) => handleInput(i, target.value)}
+          onChange={({ target }) => handleInput(input.label, target.value)}
         />
       ))}
       <br />
-      <button onClick={handleClick}>submit</button>
+      <PrimaryBtn btnText={"Submit"} btnHandle={handleClick}></PrimaryBtn><br />
     </div>
   );
 };

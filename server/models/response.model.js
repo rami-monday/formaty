@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ResponseSchema = new Schema({
   formId: String,
-  inputValues: Array,
+  inputValues: {},
 });
 const Response = mongoose.model("response", ResponseSchema);
 module.exports = Response;

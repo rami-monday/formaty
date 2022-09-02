@@ -11,22 +11,15 @@ body {
     background-color: #FEF9EF;
 }
 
-.signIn {
+.signUp {
     display: grid;
-    width: 40%;
+    width: 30%;
     grid-template-rows: repeat(1fr, 3);
     justify-items: center;
     align-items: center;
 }
 
-.keepMeSignedInContainer {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    justify-items: center;
-    align-items: center;
-}
-
-.signIn {
+.signUp {
     box-shadow: 0 0 5px #929292;
     background-color: #FFF;
     border-radius: 10px;
@@ -34,7 +27,7 @@ body {
     height: 350px;
 }
 
-.signIn input {
+.signUp input {
     width: 250px;
     height: 30px;
     margin-bottom: 10px;
@@ -44,8 +37,24 @@ body {
     font-weight: bold;
 }
 
-.signInHeaderContainer {
+.signUpHeaderContainer {
     color: #17C3B2;
 }
 
+.signUpBtnContainer button {
+    width: 100px;
+    height: 30px;
+    border: 2px solid #17C3B2;
+    background-color: #FFF;
+    color: rgb(117, 117, 117);
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 5%;
+    transition: 0.4s ease all;
+}
 
+.signUpBtnContainer button:hover {
+    background-color: #17C3B2;
+    color: white;
+}
