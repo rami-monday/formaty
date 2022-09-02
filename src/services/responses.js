@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/";
+const url = "/";
 
 export const getResponses = async function (userId,formId) {
     try {
