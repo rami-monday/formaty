@@ -27,7 +27,22 @@ const FormBuilder = ({ user }) => {
     setInputFields(updatedInputFields);
   };
 
+  const checkIfValid = () => {
+    let isValid = true;
+    inputFields.forEach((field) => {
+      const fieldOccurnace = inputFields.filter(
+        (checkedField) => checkedField.label === field.label
+      );
+      if (fieldOccurnace.length > 1) {
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
+
   const handleSubmit = async () => {
+    if (!checkIfValid()) return alert("You can't have two input fields with the same label");
+
     try {
       const response = await addForm({
         ownerId: user._id,
