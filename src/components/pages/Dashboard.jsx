@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { getUserForms } from "../../services/form";
 import Copier from "../subComponents/Copier";
 import { deletFormById } from "../../services/form";
-import SignOut from "../subComponents/SignOut";
 import Header from "../subComponents/Header";
+import SideNavigation from "../subComponents/SideNavigation";
 import { FaTrash, FaClipboardList, FaPlus } from "react-icons/fa";
 import "../style/Dashboard.css";
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user , handleOpenNav}) => {
   const [forms, setForms] = useState([]);
   const navigate = useNavigate();
+
+  const ahmad = function(){
+    handleOpenNav()
+  }
 
   const getUserFormsFromDb = async function () {
     try {
@@ -40,13 +44,12 @@ const Dashboard = ({ user }) => {
 
   return (
     <div className="mainContainer">
-      <Header />
-      <div>
-      <div className="dashBoardHeader">
-        <div className="dashBoardUserInfo">
-          <p>UserName: {user?.email}</p>
-          <SignOut />
-        </div>
+      <Header sideNav={ahmad} />
+      <div className="dashBoard">
+        <div className="dashBoardBody">
+         <SideNavigation user={user}/>   
+          <div className="userForms">
+          <div className="dashBoardHeader">
         <div
           onClick={() => navigate("/formBuilder")}
           className="dashBoardNavigation"
@@ -56,28 +59,29 @@ const Dashboard = ({ user }) => {
           </span>
         </div>
       </div>
-      <div className="userForms">
         {forms?.map((form, i) => (
-          <div className="userForm" key={i}>
-            <h2>{form.title}</h2>
+          <div className="userForm"  key={i}>
+            <div className="userFormTitle" onClick={() => navigate("/responses/" + form._id)}><h2>{form.title}</h2></div>
             <div className="userFormBtns">
               <Copier formId={form._id} />
               <button
                 className="sideIcons"
                 onClick={() => handleDeleteFormById(form._id)}
               >
-                <FaTrash></FaTrash>
+                <FaTrash/>
               </button>
               <button
                 className="sideIcons"
                 onClick={() => navigate("/responses/" + form._id)}
               >
-                <FaClipboardList></FaClipboardList>
+                <FaClipboardList/>
               </button>
             </div>
           </div>
         ))}
       </div>
+      </div>
+
       </div>
     </div>
   );

@@ -5,8 +5,14 @@
     display: grid;
     justify-items: center;
     align-items: center;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr  1fr;
     box-shadow: 0 0 5px #929292;
+    z-index: 0;
+}
+
+.header span{
+    font-size: 22px;
+    cursor: pointer;
 }
 
 .header label {

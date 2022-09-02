@@ -1,13 +1,18 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 import "../style/Header.css"
-import PrimaryBtn from "../subComponents/PrimaryBtn"
+import PrimaryBtn from "../subComponents/PrimaryBtn";
 
-export const Header = () => {
+export const Header = ({ ahmad }) => {
     const navigator = useNavigate();
     const entranceToSignUp = function () {
         navigator("/signUp");
       };
+
+    const handleNavigation = function(){
+      ahmad()
+    }
+      
   return (
     <div className="header">
         <div className="headerLogo">
