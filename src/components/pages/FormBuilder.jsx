@@ -17,15 +17,6 @@ const FormBuilder = ({ user }) => {
   };
 
   const addNewField = () => {
-    if (inputFields[1]) {
-      for (let i = 0; i < inputFields.length; i++) {
-        for (let j = 0; j < inputFields.length; j++) {
-          if (inputFields[i].label === inputFields[j].label && i !== j) {
-            return alert("You can't have two input fields with the same label");
-          }
-        }
-      }
-    }
     const newField = { type: "text", label: "label" };
     const updatedInputFields = [...inputFields, newField];
     setInputFields(updatedInputFields);
@@ -36,7 +27,22 @@ const FormBuilder = ({ user }) => {
     setInputFields(updatedInputFields);
   };
 
+  const checkIfValid = () => {
+    let isValid = true;
+    inputFields.forEach((field) => {
+      const fieldOccurnace = inputFields.filter(
+        (checkedField) => checkedField.label === field.label
+      );
+      if (fieldOccurnace.length > 1) {
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
+
   const handleSubmit = async () => {
+    if (!checkIfValid()) return alert("You can't have two input fields with the same label");
+
     try {
       const response = await addForm({
         ownerId: user._id,
