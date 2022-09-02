@@ -5,6 +5,10 @@ import { getResponses } from "../../services/responses";
 // import { CSVLink } from "react-csv";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 import "../style/Responses.css";
+import SideNavigation from "../subComponents/SideNavigation";
+import Header from "../subComponents/Header";
+import SecBtn from "../subComponents/SecBtn";
+
 
 const Responses = ({ user }) => {
   const { formId } = useParams();
@@ -38,13 +42,9 @@ const Responses = ({ user }) => {
   const tableRef = useRef(null);
   return (
     <div className="main">
-      <DownloadTableExcel
-      filename={`${form.title}`}
-        sheet="Responses"
-        currentTableRef={tableRef.current}
-      >
-        <button> Export excel </button>
-      </DownloadTableExcel>
+      <Header/>
+      <div className="responsesBody">
+      <SideNavigation user={user} />
       <div className="tableContainer">
         <table ref={tableRef}>
           <thead>
@@ -66,7 +66,16 @@ const Responses = ({ user }) => {
             })}
           </tbody>
         </table>
+        <DownloadTableExcel
+      filename={`${form.title}`}
+        sheet="Responses"
+        currentTableRef={tableRef.current}
+      >
+        <SecBtn btnText={"Export excel"}/> 
+      </DownloadTableExcel>
       </div>
+      </div>
+     
       {/* <CSVLink data={mappedResponses} filename = {`${form.title}.xlsx`} className= "exportButton">Export </CSVLink> */}
     </div>
   );

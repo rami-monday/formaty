@@ -3,6 +3,8 @@ import InputFieldEditor from "../inputfields/InputFieldEditor";
 import { addForm } from "../../services/form";
 import { useNavigate } from "react-router-dom";
 import "../style/inputFields/FormBuilder.css";
+import SideNavigation from "../subComponents/SideNavigation";
+import Header from "../subComponents/Header";
 
 const FormBuilder = ({ user }) => {
   const [title, setTitle] = useState("form title");
@@ -58,30 +60,36 @@ const FormBuilder = ({ user }) => {
 
   return (
     <div className="formBuilder">
-      <div className="formHeaders">
-        <input
-          className="labelEditor"
-          type="text"
-          value={title}
-          onChange={handleInput}
-        />
-        <input
-          className="labelEditor"
-          type="date"
-          value={deadline}
-          onChange={handleDateInput}
-        />
+      <Header/>
+      <div className="formBuilderbody">
+        <SideNavigation user={user} />
+        <div className="container">
+          <div className="formHeaders">
+            <input
+              className="labelEditor"
+              type="text"
+              value={title}
+              onChange={handleInput}
+            />
+            <input
+              className="labelEditor"
+              type="date"
+              value={deadline}
+              onChange={handleDateInput}
+            />
+          </div>
+          {inputFields.map((input, i) => (
+            <InputFieldEditor
+              key={i}
+              inputField={input}
+              index={i}
+              onChange={handleNewFieldChange}
+            />
+          ))}
+          <button onClick={addNewField}>add new input</button>
+          <button onClick={handleSubmit}>save</button>
+        </div>
       </div>
-      {inputFields.map((input, i) => (
-        <InputFieldEditor
-          key={i}
-          inputField={input}
-          index={i}
-          onChange={handleNewFieldChange}
-        />
-      ))}
-      <button onClick={addNewField}>add new input</button>
-      <button onClick={handleSubmit}>save</button>
     </div>
   );
 };
