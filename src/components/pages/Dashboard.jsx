@@ -8,13 +8,10 @@ import SideNavigation from "../subComponents/SideNavigation";
 import { FaTrash, FaClipboardList, FaPlus } from "react-icons/fa";
 import "../style/Dashboard.css";
 
-const Dashboard = ({ user , handleOpenNav}) => {
+const Dashboard = ({ user }) => {
   const [forms, setForms] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
-
-  const ahmad = function(){
-    handleOpenNav()
-  }
 
   const getUserFormsFromDb = async function () {
     try {
@@ -32,6 +29,17 @@ const Dashboard = ({ user , handleOpenNav}) => {
     } catch (error) {}
   };
 
+  const getFilteredForms = () => {
+    const filteredForms = forms?.filter((form) =>
+      form.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    return filteredForms || [];
+  };
+
+  const handleSearchBar =  ({target})=> {
+    setSearchTerm(target.value)
+  }
+
   const checkIfUser = function () {
     if (!user) {
       navigate("/");
@@ -44,44 +52,49 @@ const Dashboard = ({ user , handleOpenNav}) => {
 
   return (
     <div className="mainContainer">
-      <Header sideNav={ahmad} />
+      <Header />
       <div className="dashBoard">
         <div className="dashBoardBody">
-         <SideNavigation user={user}/>   
+          <SideNavigation user={user} />
           <div className="userForms">
-          <div className="dashBoardHeader">
-        <div
-          onClick={() => navigate("/formBuilder")}
-          className="dashBoardNavigation"
-        >
-          <span>
-            <FaPlus />
-          </span>
-        </div>
-      </div>
-        {forms?.map((form, i) => (
-          <div className="userForm"  key={i}>
-            <div className="userFormTitle" onClick={() => navigate("/responses/" + form._id)}><h2>{form.title}</h2></div>
-            <div className="userFormBtns">
-              <Copier formId={form._id} />
-              <button
-                className="sideIcons"
-                onClick={() => handleDeleteFormById(form._id)}
+            <input type="text" value={searchTerm} onChange={handleSearchBar}/>
+            <div className="dashBoardHeader">
+              <div
+                onClick={() => navigate("/formBuilder")}
+                className="dashBoardNavigation"
               >
-                <FaTrash/>
-              </button>
-              <button
-                className="sideIcons"
-                onClick={() => navigate("/responses/" + form._id)}
-              >
-                <FaClipboardList/>
-              </button>
+                <span>
+                  <FaPlus />
+                </span>
+              </div>
             </div>
+            {getFilteredForms()?.map((form, i) => (
+              <div className="userForm" key={i}>
+                <div
+                  className="userFormTitle"
+                  onClick={() => navigate("/responses/" + form._id)}
+                >
+                  <h2>{form.title}</h2>
+                </div>
+                <div className="userFormBtns">
+                  <Copier formId={form._id} />
+                  <button
+                    className="sideIcons"
+                    onClick={() => handleDeleteFormById(form._id)}
+                  >
+                    <FaTrash />
+                  </button>
+                  <button
+                    className="sideIcons"
+                    onClick={() => navigate("/responses/" + form._id)}
+                  >
+                    <FaClipboardList />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      </div>
-
+        </div>
       </div>
     </div>
   );

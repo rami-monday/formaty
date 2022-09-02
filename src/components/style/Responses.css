@@ -1,40 +1,68 @@
 table {
-  background-color: rgb(116, 116, 116);
+    background-color: #FEF9EF;
+    border-radius: 10px;
+    box-shadow: 0 0 5px #929292;
 }
+
 th {
-  background-color: #17c3b2;
-  /* display: grid; */
-  /* grid-template-rows: 1fr; */
-  justify-items: center;
-  align-items: center;
+    padding: 10px;
+    background-color: #17c3b2;
+    /* display: grid; */
+    /* grid-template-rows: 1fr; */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-items: center;
 }
+
+td {
+    padding: 10px;
+}
+
 tr {
-  background-color: #fef9ef;
+    padding: 5px;
+    background-color: #ffffff;
 }
+
 .main {
-  height: 100%;
-  width: 100%;
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-rows: 1.1fr 10fr;
+    justify-items: center;
+    align-items: center;
+    background-color: #FEF9EF;
 }
+
+.responsesBody {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+}
+
 .tableContainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: center;
-  align-items: center;
-  margin-top: 15%;
-  margin-bottom: 2%;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    justify-items: center;
+    align-items: center;
+    margin-top: 15%;
+    margin-bottom: 2%;
 }
+
 body {
-  background-color: white;
+    background-color: white;
 }
+
 .exportButton {
-  width: 150px;
-  height: 50px;
-  color: rgb(117, 117, 117);
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.4s ease all;
+    width: 150px;
+    height: 50px;
+    color: rgb(117, 117, 117);
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.4s ease all;
 }
+
 .exportButton:hover {
-  background-color: #17c3b2;
-  color: white;
+    background-color: #17c3b2;
+    color: white;
 }

@@ -1,14 +1,17 @@
-.sideNavigation{
-    width: 100%;
+.sideNavigation {
+    width: 300px;
     height: 90vh;
-    float: left;
-    box-shadow: 0 0 5px #929292;
+    left: 0;
     background-color: white;
-    transition: 1.5s ease all;
-    z-index: 0;
+    transition: 0.5s ease all;
+    box-shadow: 0 0 5px #929292;
 }
 
-.UserInformation{
+.closeSideNavigator {
+    margin-left: -80%;
+}
+
+.UserInformation {
     display: grid;
     grid-template-columns: 2.5fr 1.5fr 1fr;
     justify-items: center;
@@ -16,7 +19,7 @@
     box-shadow: 0 0 5px #929292;
 }
 
-.closeSideNav{
+.closeSideNav {
     font-size: 24px;
     font-weight: bold;
     color: #929292;
@@ -26,44 +29,44 @@
     transition: ease all 0.4s;
 }
 
-.openSideNav{
+.openSideNav {
     color: #929292;
     display: none;
     transition: ease all 0.4s;
 }
 
-.openSideNav:hover{
+.openSideNav:hover {
     color: black;
     cursor: pointer;
 }
 
-.closeSideNav:hover{
+.closeSideNav:hover {
     color: black;
     cursor: pointer;
 }
 
-.accountManagment{
-     margin-right: 5px;
+.accountManagment {
+    margin-right: 5px;
 }
 
-.sideNavItem{
+.sideNavItem {
     line-height: 60px;
     height: 60px;
     font-size: 20px;
     color: #929292;
     font-weight: bold;
-    transition: 0.4s ease all ;
+    transition: 0.4s ease all;
     cursor: pointer;
 }
 
-.sideNavItem:hover{
+.sideNavItem:hover {
     background-color: #f0f0f0;
     padding-left: 15px;
     font-size: 22px;
     color: black;
 }
 
-.sideNavIcons{
+.sideNavIcons {
     color: #929292;
     float: right;
     height: 60px;
@@ -71,7 +74,7 @@
     margin-right: 15px;
 }
 
-.sideNavIcons:hover{
+.sideNavIcons:hover {
     color: black;
     font-size: 22px;
 }
