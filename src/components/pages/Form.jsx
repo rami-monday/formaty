@@ -11,7 +11,7 @@ const Form = () => {
   const { formId } = useParams();
   const [form, setForm] = useState({});
   const [values, setValues] = useState({});
-
+  const [Sumbit,setSumbit] = useState(false)
   const getFormFromDb = async () => {
     const dbForm = await getOneFormById(formId);
     setForm(dbForm);
@@ -34,8 +34,13 @@ const Form = () => {
       formId: formId,
       inputValues: values,
     });
-
+    setSumbit(true)
   };
+  if (Sumbit) {
+    return(
+      <div>Thank you for sumbitting to us</div>
+    )
+  }else{
   return (
     <div className="formBuilder">
       <h1> {form.title}</h1>
@@ -50,7 +55,7 @@ const Form = () => {
       <br />
       <PrimaryBtn btnText={"Submit"} btnHandle={handleClick}></PrimaryBtn><br />
     </div>
-  );
+  );}
 };
 
 export default Form;
