@@ -40,9 +40,10 @@ tr {
 
 .tableContainer {
     display: grid;
-    grid-template-columns: 1fr;
     overflow: scroll;
     scroll-behavior: smooth;
+    height: 500px;
+    grid-template-columns: 1fr;
     justify-items: center;
     align-items: center;
     margin-top: 15%;

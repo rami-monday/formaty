@@ -58,7 +58,9 @@ const Dashboard = ({ user }) => {
         <div className="dashBoardBody">
           <SideNavigation user={user} />
           <div className="userForms">
-            <input type="text" value={searchTerm} onChange={handleSearchBar} />
+
+            <input className="searchBar" placeholder="Search Forms" type="text" value={searchTerm} onChange={handleSearchBar}/>
+
             <div className="dashBoardHeader">
               <div
                 onClick={() => navigate("/formBuilder")}
