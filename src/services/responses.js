@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/";
-
+const url = window.origin.includes("localhost")
+  ? "http://localhost:3001/"
+  : "/";
+  
 export const getResponses = async function (userId,formId) {
     try {
         const dbResponse = await axios.post(`${url}response/getFormResponses`,{userId,formId})

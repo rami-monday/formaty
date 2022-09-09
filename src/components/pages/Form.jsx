@@ -23,18 +23,18 @@ const Form = () => {
     const updatedValues = { ...values };
     updatedValues[index] = value;
     setValues(updatedValues);
-    console.log(values);
   };
 
   useEffect(() => {
     getFormFromDb();
   }, []);
+
   const handleClick = async function () {
     const newResponse = await addResponse({
       formId: formId,
       inputValues: values,
     });
-    console.log(values);
+
   };
   return (
     <div className="formBuilder">

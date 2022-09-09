@@ -14,7 +14,7 @@ export const SideNavigation = ({ user }) => {
   return (
     <div className={"sideNavigation " + (showNav && "closeSideNavigator")}>
       <div className="UserInformation">
-        <h5>{user?.email}</h5>
+        <h5>{user?.username}</h5>
         <div className="accountManagment">
           <div className="card">
             <SignOut />

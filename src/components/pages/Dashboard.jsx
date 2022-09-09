@@ -36,9 +36,9 @@ const Dashboard = ({ user }) => {
     return filteredForms || [];
   };
 
-  const handleSearchBar =  ({target})=> {
-    setSearchTerm(target.value)
-  }
+  const handleSearchBar = ({ target }) => {
+    setSearchTerm(target.value);
+  };
 
   const checkIfUser = function () {
     if (!user) {
@@ -49,6 +49,7 @@ const Dashboard = ({ user }) => {
     checkIfUser();
     getUserFormsFromDb();
   }, []);
+  
 
   return (
     <div className="mainContainer">
@@ -57,7 +58,9 @@ const Dashboard = ({ user }) => {
         <div className="dashBoardBody">
           <SideNavigation user={user} />
           <div className="userForms">
+
             <input className="searchBar" placeholder="Search Forms" type="text" value={searchTerm} onChange={handleSearchBar}/>
+
             <div className="dashBoardHeader">
               <div
                 onClick={() => navigate("/formBuilder")}
@@ -77,19 +80,20 @@ const Dashboard = ({ user }) => {
                   <h2>{form.title}</h2>
                 </div>
                 <div className="userFormBtns">
-                  <Copier formId={form._id} />
-                  <button
-                    className="sideIcons"
-                    onClick={() => handleDeleteFormById(form._id)}
-                  >
-                    <FaTrash />
-                  </button>
-                  <button
-                    className="sideIcons"
-                    onClick={() => navigate("/responses/" + form._id)}
-                  >
-                    <FaClipboardList />
-                  </button>
+              
+                    <Copier formId={form._id} />
+                    <button
+                      className="sideIcons"
+                      onClick={() => handleDeleteFormById(form._id)}
+                    >
+                      <FaTrash />
+                    </button>
+                    <button
+                      className="sideIcons"
+                      onClick={() => navigate("/responses/" + form._id)}
+                    >
+                      <FaClipboardList />
+                    </button>
                 </div>
               </div>
             ))}
