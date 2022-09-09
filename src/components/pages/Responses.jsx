@@ -30,27 +30,21 @@ const Responses = ({ user }) => {
   }, [formId, user._id]);
 
   const mappedResponses = responses.map((response) => {
-    if (response.inputValues.length) {
-      const newInputValues = {};
-      response.inputValues.forEach((value, i) => {
-        newInputValues[form.inputFields[i].label] = value;
-      });
-      return newInputValues;
-    }
     return response.inputValues;
   });
+
   const tableRef = useRef(null);
-  return (
+  return mappedResponses[0] ? (
     <div className="main">
-      <Header/>
+       <Header/>
       <div className="responsesBody">
       <SideNavigation user={user} />
       <div className="tableContainer">
         <table ref={tableRef}>
           <thead>
             <tr>
-              {form.inputFields.map((field, i) => (
-                <th key={i}>{field.label}</th>
+              {Object.keys(mappedResponses[0]).map((field, i) => (
+                <th key={i}>{field}</th>
               ))}
             </tr>
           </thead>
@@ -59,6 +53,13 @@ const Responses = ({ user }) => {
               return (
                 <tr key={i}>
                   {Object.entries(response).map(([key, value]) => {
+                    if (key === "timestamp") {
+                      return (
+                        <td key={key + value}>
+                          {new Date(value).toLocaleDateString()}
+                        </td>
+                      );
+                    }
                     return <td key={key + value}>{value}</td>;
                   })}
                 </tr>
@@ -78,6 +79,8 @@ const Responses = ({ user }) => {
      
       {/* <CSVLink data={mappedResponses} filename = {`${form.title}.xlsx`} className= "exportButton">Export </CSVLink> */}
     </div>
+  ) : (
+    <div>No responses yet for this form</div>
   );
 };
 
