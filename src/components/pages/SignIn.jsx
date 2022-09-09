@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignInApiManager } from "../../services/user";
-import "../style/signIn.css"
-import Header from "../subComponents/Header"
+import "../style/signIn.css";
+import Header from "../subComponents/Header";
 import SecBtn from "../subComponents/SecBtn";
-
+import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const SignIn = ({ saveUserLocally }) => {
   const [user, setUser] = useState({ email: "", password: "" });
+  const [passwordType, setPasswordType] = useState("password");
   const navigator = useNavigate();
 
   const handleClick = async function () {
@@ -26,6 +27,13 @@ const SignIn = ({ saveUserLocally }) => {
     const userTryingToLogin = { ...user };
     userTryingToLogin[property] = value;
     setUser(userTryingToLogin);
+  };
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
   };
   return (
     <div className="mainContainer">
@@ -48,7 +56,7 @@ const SignIn = ({ saveUserLocally }) => {
           />
           <br />
           <input
-            type="password"
+            type={passwordType}
             value={user.password}
             placeholder="Password"
             onChange={(e) => handleInput("password", e.target.value)}
@@ -58,14 +66,18 @@ const SignIn = ({ saveUserLocally }) => {
               }
             }}
           />
+          <button onClick={togglePassword} id="eyeIcon">
+            {passwordType === "password" ? (
+              <AiFillEye />
+            ) : (
+              <AiOutlineEyeInvisible />
+            )}
+          </button>
         </div>
-        {/* <div className="keepMeSignedInContainer">
-         <input type="checkbox" />
-         <span>Remember Me.</span>
-      </div> */}
-      <div className="logInBtnContainer">
-        <SecBtn btnText={"SignIn"} btnHandle={handleClick}> </SecBtn>
-      </div>
+
+        <div className="logInBtnContainer">
+          <SecBtn btnText={"SignIn"} btnHandle={handleClick}></SecBtn>
+        </div>
       </div>
     </div>
   );

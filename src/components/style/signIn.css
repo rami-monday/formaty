@@ -1,51 +1,57 @@
 body {
-    margin: 0;
+  margin: 0;
 }
 
 .mainContainer {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-rows: 10% 90%;
-    justify-items: center;
-    background-color: #FEF9EF;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  justify-items: center;
+  background-color: #fef9ef;
 }
 
 .signIn {
-    display: grid;
-    width: 40%;
-    grid-template-rows: repeat(1fr, 3);
-    justify-items: center;
-    align-items: center;
+  display: grid;
+  width: 40%;
+  grid-template-rows: repeat(1fr, 3);
+  justify-items: center;
+  align-items: center;
 }
 
 .keepMeSignedInContainer {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    justify-items: center;
-    align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  justify-items: center;
+  align-items: center;
 }
 
 .signIn {
-    box-shadow: 0 0 5px #929292;
-    background-color: #FFF;
-    border-radius: 10px;
-    margin-top: 12.5%;
-    height: 350px;
+  box-shadow: 0 0 5px #929292;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-top: 12.5%;
+  height: 350px;
 }
 
 .signIn input {
-    width: 250px;
-    height: 30px;
-    margin-bottom: 10px;
-    border-radius: 20px;
-    border: 2px solid #17C3B2;
-    padding-left: 15px;
-    font-weight: bold;
+  width: 250px;
+  height: 30px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  border: 2px solid #17c3b2;
+  padding-left: 15px;
+  font-weight: bold;
 }
 
 .signInHeaderContainer {
-    color: #17C3B2;
+  color: #17c3b2;
 }
-
-
+#eyeIcon {
+  background-color: #fff;
+  border:#fff;
+  position: relative;
+  font-size: large;
+  color: #17c3b2;
+  margin-left: -40px;
+}
