@@ -14,11 +14,12 @@ mongoose
   .then(() => console.log("connected to db"))
   .catch(() => console.log("couldn't connect to db"));
 
-app.use(express.static(path.join(__dirname, "build")));
+app.use("/", express.static(path.join(__dirname, "build")));
+app.use("/:page/:param?", express.static(path.join(__dirname, "build")));
 
 app.use(express.json());
 app.use(cors());
-app.use(router);
+app.use("/api", router);
 // test
 app.listen(PORT, () =>
   console.log(`formaty server listening on port ${PORT}!`)

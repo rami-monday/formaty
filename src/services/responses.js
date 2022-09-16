@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const url = window.origin.includes("localhost")
-  ? "http://localhost:3001/"
-  : "/";
+  ? "http://localhost:3001/api/"
+  : "/api/";
   
 export const getResponses = async function (userId,formId) {
     try {
