@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "build")));
 app.use(express.json());
 app.use(cors());
 app.use(router);
-
+// test
 app.listen(PORT, () =>
   console.log(`formaty server listening on port ${PORT}!`)
 );
