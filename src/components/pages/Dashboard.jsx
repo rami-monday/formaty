@@ -49,8 +49,16 @@ const Dashboard = ({ user }) => {
     checkIfUser();
     getUserFormsFromDb();
   }, []);
-  
 
+const statusCheck = function (status) {
+  if (status=="active") {
+    return "green"
+  }else if(status == "inactive"){
+    return "orange"
+  }else{
+    return "red"
+  }
+}
   return (
     <div className="mainContainer">
       <Header />
@@ -73,6 +81,7 @@ const Dashboard = ({ user }) => {
             </div>
             {getFilteredForms()?.map((form, i) => (
               <div className="userForm" key={i}>
+                <div className={"statusDot "+ statusCheck(form.status)}></div>
                 <div
                   className="userFormTitle"
                   onClick={() => navigate("/responses/" + form._id)}
