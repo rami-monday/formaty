@@ -1,9 +1,19 @@
 const router = require("express").Router();
-const { getUserFormsController, addFormController, getOneFormById, deletFormById } = require("../controllers/form.controller")
+const {
+  getUserFormsController,
+  addFormController,
+  getOneFormById,
+  deletFormById,
+} = require("../controllers/form.controller");
+const authenticationMiddleware = require("../middlewares/authenticationMiddleware");
 
-router.get("/getUserForms/:userId", getUserFormsController);
-router.post("/addForm", addFormController);
+router.get("/getUserForms", authenticationMiddleware, getUserFormsController);
+router.post("/addForm", authenticationMiddleware, addFormController);
 router.get("/getFormById/:formId", getOneFormById);
-router.delete("/deleteFormById/:formId", deletFormById);
+router.delete(
+  "/deleteFormById/:formId",
+  authenticationMiddleware,
+  deletFormById
+);
 
 module.exports = router;

@@ -2,7 +2,8 @@ const Form = require("../models/form.model");
 const Response = require("../models/response.model");
 //this function is not working, because the if has a problem
 const getResponseController = async function (req, res) {
-  const { userId, formId } = req.body;
+  const { formId } = req.body;
+  const userId = req.user._id;
   try {
     const form = await Form.findById(formId);
     if (form.ownerId === userId) {

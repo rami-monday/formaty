@@ -8,36 +8,87 @@ import Home from "./components/pages/Home";
 import Dashboard from "./components/pages/Dashboard";
 import FormBuilder from "./components/pages/FormBuilder";
 import Responses from "./components/pages/Responses";
-
-const savedUser = JSON.parse(localStorage.getItem("user"));
+import { getAuthenticatedUser } from "./services/user";
 
 function App() {
-  const [user, setUser] = useState(savedUser);
+  const [user, setUser] = useState(null);
 
-  const saveUserLocally = (user) => {
+  const saveUserLocally = async (tokenData) => {
+    const user = await getAuthenticatedUser(tokenData);
     setUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
   };
+
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("user"));
+    if (savedData?.token && !user) {
+      saveUserLocally(savedData);
+    }
+  }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home setUser={setUser} />} />
+          <Route
+            path="/"
+            element={
+              user ? (
+                <Dashboard user={user} setUser={setUser} />
+              ) : (
+                <SignIn saveUserLocally={saveUserLocally} />
+              )
+            }
+          />
           <Route
             path="/signIn"
-            element={<SignIn saveUserLocally={saveUserLocally} />}
+            element={
+              user ? (
+                <Dashboard user={user} setUser={setUser} />
+              ) : (
+                <SignIn saveUserLocally={saveUserLocally} />
+              )
+            }
           />
           <Route
             path="/signUp"
-            element={<SignUp saveUserLocally={saveUserLocally} />}
+            element={
+              user ? (
+                <Dashboard user={user} setUser={setUser} />
+              ) : (
+                <SignUp saveUserLocally={saveUserLocally} />
+              )
+            }
           />
           <Route path="/form/:formId" element={<Form />} />
-          <Route path="/dashboard" element={<Dashboard user={user} />} />
-          <Route path="/formBuilder" element={<FormBuilder user={user} />} />
+          <Route
+            path="/dashboard"
+            element={
+              user ? (
+                <Dashboard user={user} setUser={setUser} />
+              ) : (
+                <SignIn saveUserLocally={saveUserLocally} />
+              )
+            }
+          />
+          <Route
+            path="/formBuilder"
+            element={
+              user ? (
+                <FormBuilder user={user} setUser={setUser} />
+              ) : (
+                <SignIn saveUserLocally={saveUserLocally} />
+              )
+            }
+          />
           <Route
             path="/responses/:formId"
-            element={<Responses user={user} />}
+            element={
+              user ? (
+                <Responses user={user} setUser={setUser} />
+              ) : (
+                <SignIn saveUserLocally={saveUserLocally} />
+              )
+            }
           />
         </Routes>
       </BrowserRouter>

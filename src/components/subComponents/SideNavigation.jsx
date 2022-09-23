@@ -6,8 +6,7 @@ import { FaAlignJustify, FaHome } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-
-export const SideNavigation = ({ user }) => {
+export const SideNavigation = ({ user, setUser }) => {
   const [showNav, setShowNav] = useState(true);
   const navigate = useNavigate();
 
@@ -17,14 +16,17 @@ export const SideNavigation = ({ user }) => {
         <h5>{user?.username}</h5>
         <div className="accountManagment">
           <div className="card">
-            <SignOut />
+            <SignOut setUser={setUser} />
           </div>
         </div>
         <MdClear
           className={showNav ? "openSideNav" : "closeSideNav"}
           onClick={() => setShowNav(true)}
         />
-        <FaAlignJustify className={showNav ? "closeSideNav" : "openSideNav"} onClick={() => setShowNav(false)} />
+        <FaAlignJustify
+          className={showNav ? "closeSideNav" : "openSideNav"}
+          onClick={() => setShowNav(false)}
+        />
       </div>
       <div className="sideNavItems">
         <p className="sideNavItem" onClick={() => navigate("/dashboard/")}>
