@@ -8,6 +8,7 @@ export const getAuthenticatedUser = async function (tokenData) {
     const response = await signedRequest.get(`${url}user/getUser`);
     return response.data;
   } catch (error) {
+    localStorage.clear()
     alert(JSON.stringify(error));
   }
 };
