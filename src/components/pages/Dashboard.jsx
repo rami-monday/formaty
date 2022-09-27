@@ -48,6 +48,7 @@ const Dashboard = ({ user }) => {
   useEffect(() => {
     checkIfUser();
     getUserFormsFromDb();
+    formStatusChecker(forms)
   }, []);
 
 const statusCheck = function (status) {
@@ -58,6 +59,21 @@ const statusCheck = function (status) {
   }else{
     return "red"
   }
+}
+const formStatusChecker = function (forms) {
+//   const date = Date.now()
+//   forms.map((form)=>{
+// console.log(form.status);
+// if (form.status !== "expired" ) {
+//   console.log(form.title);
+//   if (form.deadline <= date) {
+//     form.status = "expired"
+//     console.log(form.status);
+//   } 
+
+// }
+//   })
+  
 }
   return (
     <div className="mainContainer">
