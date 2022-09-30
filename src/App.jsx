@@ -1,13 +1,11 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
 import Form from "./components/pages/Form";
 import "./App.css";
 import Dashboard from "./components/pages/Dashboard";
 import FormBuilder from "./components/pages/FormBuilder";
 import Responses from "./components/pages/Responses";
-import { getAuthenticatedUser } from "./services/user";
 import GlobalStore from "./store/globalStore";
 import { Provider } from "mobx-react";
 import AuthenticatedComponents from "./components/subComponents/AuthenticatedComponents";
@@ -15,12 +13,7 @@ import AuthenticatedComponents from "./components/subComponents/AuthenticatedCom
 const globalStore = new GlobalStore();
 
 function App() {
-  const { user, setUser } = globalStore;
-
-  const saveUserLocally = async (tokenData) => {
-    const user = await getAuthenticatedUser(tokenData);
-    setUser(user);
-  };
+  const { user, setUser, saveUserLocally } = globalStore;
 
   useEffect(() => {
     if (!user) {
@@ -29,7 +22,7 @@ function App() {
         saveUserLocally(savedData);
       }
     }
-  }, [user]);
+  }, [user, saveUserLocally]);
 
   return (
     <Provider globalStore={globalStore}>

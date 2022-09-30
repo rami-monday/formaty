@@ -1,4 +1,5 @@
 import { action, makeAutoObservable, observable } from "mobx";
+import { getAuthenticatedUser } from "../services/user";
 
 class GlobalStore {
   constructor() {
@@ -12,6 +13,11 @@ class GlobalStore {
 
   setUser = (user) => {
     this.user = user;
+  };
+
+  saveUserLocally = async (tokenData) => {
+    const user = await getAuthenticatedUser(tokenData);
+    this.setUser(user);
   };
 }
 

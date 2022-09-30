@@ -7,14 +7,12 @@ const AuthenticatedComponents = ({
   children,
   redirectComponent,
 }) => {
-  const { user, setUser } = globalStore;
+  const { user } = globalStore;
 
   if (user) {
     return children;
   }
-  redirectComponent = redirectComponent || (
-    <SignIn user={user} setUser={setUser} />
-  );
+  redirectComponent = redirectComponent || <SignIn />;
   return redirectComponent;
 };
 
