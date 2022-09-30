@@ -27,10 +27,10 @@ const Form = () => {
 
   useEffect(() => {
     getFormFromDb();
-  }, []);
+  });
 
   const handleClick = async function () {
-    const newResponse = await addResponse({
+    await addResponse({
       formId: formId,
       inputValues: values,
     });
