@@ -6,7 +6,7 @@ import "../style/inputFields/FormBuilder.css";
 import SideNavigation from "../subComponents/SideNavigation";
 import Header from "../subComponents/Header";
 
-const FormBuilder = ({ user }) => {
+const FormBuilder = ({ user ,setUser}) => {
   const [title, setTitle] = useState("form title");
   const [deadline, setDeadline] = useState("");
   const [inputFields, setInputFields] = useState([]);
@@ -47,7 +47,6 @@ const FormBuilder = ({ user }) => {
 
     try {
       const response = await addForm({
-        ownerId: user._id,
         inputFields,
         title,
         deadline: Date.parse(deadline),
@@ -62,7 +61,7 @@ const FormBuilder = ({ user }) => {
     <div className="formBuilder">
       <Header/>
       <div className="formBuilderbody">
-        <SideNavigation user={user} />
+        <SideNavigation user={user} setUser={setUser}/>
         <div className="container">
           <div className="formHeaders">
             <input
