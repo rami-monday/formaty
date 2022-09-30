@@ -8,7 +8,7 @@ import SideNavigation from "../subComponents/SideNavigation";
 import { FaTrash, FaClipboardList, FaPlus } from "react-icons/fa";
 import "../style/Dashboard.css";
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user, setUser }) => {
   const [forms, setForms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -40,26 +40,24 @@ const Dashboard = ({ user }) => {
     setSearchTerm(target.value);
   };
 
-  const checkIfUser = function () {
-    if (!user) {
-      navigate("/");
-    }
-  };
   useEffect(() => {
-    checkIfUser();
     getUserFormsFromDb();
   }, []);
-  
 
   return (
     <div className="mainContainer">
       <Header />
       <div className="dashBoard">
         <div className="dashBoardBody">
-          <SideNavigation user={user} />
+          <SideNavigation user={user} setUser={setUser} />
           <div className="userForms">
-
-            <input className="searchBar" placeholder="Search Forms" type="text" value={searchTerm} onChange={handleSearchBar}/>
+            <input
+              className="searchBar"
+              placeholder="Search Forms"
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchBar}
+            />
 
             <div className="dashBoardHeader">
               <div
@@ -80,20 +78,19 @@ const Dashboard = ({ user }) => {
                   <h2>{form.title}</h2>
                 </div>
                 <div className="userFormBtns">
-              
-                    <Copier formId={form._id} />
-                    <button
-                      className="sideIcons"
-                      onClick={() => handleDeleteFormById(form._id)}
-                    >
-                      <FaTrash />
-                    </button>
-                    <button
-                      className="sideIcons"
-                      onClick={() => navigate("/responses/" + form._id)}
-                    >
-                      <FaClipboardList />
-                    </button>
+                  <Copier formId={form._id} />
+                  <button
+                    className="sideIcons"
+                    onClick={() => handleDeleteFormById(form._id)}
+                  >
+                    <FaTrash />
+                  </button>
+                  <button
+                    className="sideIcons"
+                    onClick={() => navigate("/responses/" + form._id)}
+                  >
+                    <FaClipboardList />
+                  </button>
                 </div>
               </div>
             ))}

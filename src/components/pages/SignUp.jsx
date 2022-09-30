@@ -18,7 +18,6 @@ const SignUp = ({ saveUserLocally }) => {
   const handleClick = async function () {
     try {
       const dbRes = await SignUpApiManager(user);
-      alert("You have successfully signed up");
       setNewUser({ email: "", username: "", password: "" });
       saveUserLocally(dbRes);
       navigator("/dashboard");

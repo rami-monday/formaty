@@ -1,12 +1,10 @@
-import axios from "axios";
-
-const url = window.origin.includes("localhost")
-  ? "http://localhost:3001/api/"
-  : "/api/";
+import { signedRequest, url } from "./apiService";
 
 export const getUserForms = async function (userId) {
   try {
-    const response = await axios.get(`${url}form/getUserForms/${userId}`);
+    const response = await signedRequest.get(
+      `${url}form/getUserForms`
+    );
     return response.data;
   } catch (error) {
     alert(JSON.stringify(error));
@@ -15,7 +13,9 @@ export const getUserForms = async function (userId) {
 
 export const getOneFormById = async function (formId) {
   try {
-    const response = await axios.get(`${url}form/getFormById/${formId}`);
+    const response = await signedRequest.get(
+      `${url}form/getFormById/${formId}`
+    );
     return response.data;
   } catch (error) {
     alert(JSON.stringify(error));
@@ -24,8 +24,7 @@ export const getOneFormById = async function (formId) {
 
 export const addForm = async function (form) {
   try {
-    console.log("33");
-    const response = await axios.post(`${url}form/addForm`, form);
+    const response = await signedRequest.post(`${url}form/addForm`, form);
     return response.data;
   } catch (error) {
     alert(JSON.stringify(error));
@@ -34,7 +33,9 @@ export const addForm = async function (form) {
 
 export const deletFormById = async function (formId) {
   try {
-    const response = await axios.delete(`${url}form/deleteFormById/${formId}`);
+    const response = await signedRequest.delete(
+      `${url}form/deleteFormById/${formId}`
+    );
     return response.data;
   } catch (error) {
     alert(JSON.stringify(error));

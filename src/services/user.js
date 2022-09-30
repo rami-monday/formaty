@@ -1,12 +1,23 @@
-import axios from "axios";
+import { signedRequest, url } from "./apiService";
 
-const url = window.origin.includes("localhost")
-  ? "http://localhost:3001/api/"
-  : "/api/";
+export const getAuthenticatedUser = async function (tokenData) {
+  try {
+    if (tokenData) {
+      signedRequest.defaults.headers = tokenData;
+    }
+    const response = await signedRequest.get(`${url}user/getUser`);
+    return response.data;
+  } catch (error) {
+    localStorage.clear()
+    alert(JSON.stringify(error));
+  }
+};
 
 export const SignInApiManager = async function (user) {
   try {
-    const response = await axios.put(`${url}user/signIn`, user);
+    const response = await signedRequest.put(`${url}user/signIn`, user);
+    signedRequest.defaults.headers = response.data;
+    localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
   } catch (error) {
     alert(JSON.stringify(error));
@@ -15,7 +26,9 @@ export const SignInApiManager = async function (user) {
 
 export const SignUpApiManager = async function (user) {
   try {
-    const response = await axios.post(`${url}user/signUp`, user);
+    const response = await signedRequest.post(`${url}user/signUp`, user);
+    signedRequest.defaults.headers = response.data;
+    localStorage.setItem("user", JSON.stringify(response.data));
     return response.data;
   } catch (error) {
     alert(JSON.stringify(error));
