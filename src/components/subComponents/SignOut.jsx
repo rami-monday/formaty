@@ -1,7 +1,9 @@
+import { inject, observer } from "mobx-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const SignOut = ({ setUser }) => {
+const SignOut = ({ globalStore }) => {
+  const { setUser } = globalStore;
   const navigate = useNavigate();
 
   const signOut = function () {
@@ -17,5 +19,4 @@ const SignOut = ({ setUser }) => {
     </div>
   );
 };
-
-export default SignOut;
+export default inject("globalStore")(observer(SignOut));

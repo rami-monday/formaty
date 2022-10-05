@@ -7,8 +7,10 @@ import Header from "../subComponents/Header";
 import SideNavigation from "../subComponents/SideNavigation";
 import { FaTrash, FaClipboardList, FaPlus } from "react-icons/fa";
 import "../style/Dashboard.css";
+import { inject, observer } from "mobx-react";
 
-const Dashboard = ({ user, setUser }) => {
+const Dashboard = ({ globalStore }) => {
+  const { user, setUser } = globalStore;
   const [forms, setForms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ const Dashboard = ({ user, setUser }) => {
 
   useEffect(() => {
     getUserFormsFromDb();
-  }, []);
+  });
 
   return (
     <div className="mainContainer">
@@ -101,4 +103,4 @@ const Dashboard = ({ user, setUser }) => {
   );
 };
 
-export default Dashboard;
+export default inject("globalStore")(observer(Dashboard));
