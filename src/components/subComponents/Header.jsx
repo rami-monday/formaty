@@ -16,10 +16,10 @@ export const Header = () => {
         </div>
         <div className="headerNavigation">
           <div className="headerNavigationItems">
-              <a href="">Home</a>
-               <a href="">About</a>
-               <a href="">Contact</a>
-               <a href="">Forms</a>
+              <a href="#wesf">Home</a>
+               <a href="#wesf">About</a>
+               <a href="#wesf">Contact</a>
+               <a href="#wesf">Forms</a>
           </div><div></div>
           <PrimaryBtn btnText={"SignUp"} btnHandle={entranceToSignUp}>SignUp</PrimaryBtn>
         </div>

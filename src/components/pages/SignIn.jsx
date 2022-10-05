@@ -5,8 +5,10 @@ import "../style/signIn.css";
 import Header from "../subComponents/Header";
 import SecBtn from "../subComponents/SecBtn";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { inject, observer } from "mobx-react";
 
-const SignIn = ({ saveUserLocally }) => {
+const SignIn = ({ globalStore }) => {
+  const { saveUserLocally } = globalStore;
   const [user, setUser] = useState({ email: "", password: "" });
   const [passwordType, setPasswordType] = useState("password");
   const navigator = useNavigate();
@@ -82,5 +84,4 @@ const SignIn = ({ saveUserLocally }) => {
     </div>
   );
 };
-
-export default SignIn;
+export default inject("globalStore")(observer(SignIn));

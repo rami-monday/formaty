@@ -10,7 +10,7 @@ import Header from "../subComponents/Header";
 import SecBtn from "../subComponents/SecBtn";
 
 
-const Responses = ({ user }) => {
+const Responses = ({ user,setUser }) => {
   const { formId } = useParams();
   const [form, setForm] = useState({ inputFields: [] });
   const [responses, setResponses] = useState([]);
@@ -38,7 +38,7 @@ const Responses = ({ user }) => {
     <div className="main">
        <Header/>
       <div className="responsesBody">
-      <SideNavigation user={user} />
+      <SideNavigation user={user} setUser={setUser}/>
       <div className="tableContainer">
         <table ref={tableRef}>
           <thead>

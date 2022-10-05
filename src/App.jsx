@@ -1,47 +1,91 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignIn from "./components/pages/SignIn";
 import SignUp from "./components/pages/SignUp";
 import Form from "./components/pages/Form";
 import "./App.css";
-import Home from "./components/pages/Home";
 import Dashboard from "./components/pages/Dashboard";
 import FormBuilder from "./components/pages/FormBuilder";
 import Responses from "./components/pages/Responses";
+import GlobalStore from "./store/globalStore";
+import { Provider } from "mobx-react";
+import AuthenticatedComponents from "./components/subComponents/AuthenticatedComponents";
 
-const savedUser = JSON.parse(localStorage.getItem("user"));
+const globalStore = new GlobalStore();
 
 function App() {
-  const [user, setUser] = useState(savedUser);
+  const { user, setUser, saveUserLocally } = globalStore;
 
-  const saveUserLocally = (user) => {
-    setUser(user);
-    localStorage.setItem("user", JSON.stringify(user));
-  };
+  useEffect(() => {
+    if (!user) {
+      const savedData = JSON.parse(localStorage.getItem("user"));
+      if (savedData?.token && !user) {
+        saveUserLocally(savedData);
+      }
+    }
+  }, [user, saveUserLocally]);
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home setUser={setUser} />} />
-          <Route
-            path="/signIn"
-            element={<SignIn saveUserLocally={saveUserLocally} />}
-          />
-          <Route
-            path="/signUp"
-            element={<SignUp saveUserLocally={saveUserLocally} />}
-          />
-          <Route path="/form/:formId" element={<Form />} />
-          <Route path="/dashboard" element={<Dashboard user={user} />} />
-          <Route path="/formBuilder" element={<FormBuilder user={user} />} />
-          <Route
-            path="/responses/:formId"
-            element={<Responses user={user} />}
-          />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <Provider globalStore={globalStore}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <AuthenticatedComponents>
+                  <Dashboard />
+                </AuthenticatedComponents>
+              }
+            />
+            <Route
+              path="/signIn"
+              element={
+                <AuthenticatedComponents>
+                  <Dashboard />
+                </AuthenticatedComponents>
+              }
+            />
+            <Route
+              path="/signUp"
+              element={
+                <AuthenticatedComponents
+                  redirectComponent={
+                    <SignUp saveUserLocally={saveUserLocally} />
+                  }
+                >
+                  <Dashboard />
+                </AuthenticatedComponents>
+              }
+            />
+            <Route path="/form/:formId" element={<Form />} />
+            <Route
+              path="/dashboard"
+              element={
+                <AuthenticatedComponents>
+                  <Dashboard />
+                </AuthenticatedComponents>
+              }
+            />
+            <Route
+              path="/formBuilder"
+              element={
+                <AuthenticatedComponents>
+                  <FormBuilder user={user} setUser={setUser} />
+                </AuthenticatedComponents>
+              }
+            />
+            <Route
+              path="/responses/:formId"
+              element={
+                <AuthenticatedComponents>
+                  <Responses user={user} setUser={setUser} />
+                </AuthenticatedComponents>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 

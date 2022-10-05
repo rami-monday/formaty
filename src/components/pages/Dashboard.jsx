@@ -7,8 +7,10 @@ import Header from "../subComponents/Header";
 import SideNavigation from "../subComponents/SideNavigation";
 import { FaTrash, FaClipboardList, FaPlus } from "react-icons/fa";
 import "../style/Dashboard.css";
+import { inject, observer } from "mobx-react";
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ globalStore }) => {
+  const { user, setUser } = globalStore;
   const [forms, setForms] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
@@ -40,13 +42,7 @@ const Dashboard = ({ user }) => {
     setSearchTerm(target.value);
   };
 
-  const checkIfUser = function () {
-    if (!user) {
-      navigate("/");
-    }
-  };
   useEffect(() => {
-    checkIfUser();
     getUserFormsFromDb();
     formStatusChecker(forms)
   }, []);
@@ -80,10 +76,15 @@ const formStatusChecker = function (forms) {
       <Header />
       <div className="dashBoard">
         <div className="dashBoardBody">
-          <SideNavigation user={user} />
+          <SideNavigation user={user} setUser={setUser} />
           <div className="userForms">
-
-            <input className="searchBar" placeholder="Search Forms" type="text" value={searchTerm} onChange={handleSearchBar}/>
+            <input
+              className="searchBar"
+              placeholder="Search Forms"
+              type="text"
+              value={searchTerm}
+              onChange={handleSearchBar}
+            />
 
             <div className="dashBoardHeader">
               <div
@@ -105,20 +106,19 @@ const formStatusChecker = function (forms) {
                   <h2>{form.title}</h2>
                 </div>
                 <div className="userFormBtns">
-              
-                    <Copier formId={form._id} />
-                    <button
-                      className="sideIcons"
-                      onClick={() => handleDeleteFormById(form._id)}
-                    >
-                      <FaTrash />
-                    </button>
-                    <button
-                      className="sideIcons"
-                      onClick={() => navigate("/responses/" + form._id)}
-                    >
-                      <FaClipboardList />
-                    </button>
+                  <Copier formId={form._id} />
+                  <button
+                    className="sideIcons"
+                    onClick={() => handleDeleteFormById(form._id)}
+                  >
+                    <FaTrash />
+                  </button>
+                  <button
+                    className="sideIcons"
+                    onClick={() => navigate("/responses/" + form._id)}
+                  >
+                    <FaClipboardList />
+                  </button>
                 </div>
               </div>
             ))}
@@ -129,4 +129,4 @@ const formStatusChecker = function (forms) {
   );
 };
 
-export default Dashboard;
+export default inject("globalStore")(observer(Dashboard));
