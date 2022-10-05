@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignUpApiManager } from "../../services/user";
 import "../style/signUp.css";
+import { inject, observer } from "mobx-react";
 
-const SignUp = ({ saveUserLocally }) => {
+const SignUp = ({ globalStore }) => {
+  const {saveUserLocally} = globalStore
   const [user, setNewUser] = useState({
     email: "",
     username: "",
@@ -78,4 +80,5 @@ const SignUp = ({ saveUserLocally }) => {
   );
 };
 
-export default SignUp;
+export default inject("globalStore")(observer(SignUp));
+

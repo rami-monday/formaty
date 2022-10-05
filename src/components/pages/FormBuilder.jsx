@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import "../style/inputFields/FormBuilder.css";
 import SideNavigation from "../subComponents/SideNavigation";
 import Header from "../subComponents/Header";
+import { inject, observer } from "mobx-react";
 
-const FormBuilder = ({ user ,setUser}) => {
+const FormBuilder = ({ globalStore }) => {
+  const { user, setUser } = globalStore;
   const [title, setTitle] = useState("form title");
   const [deadline, setDeadline] = useState("");
   const [inputFields, setInputFields] = useState([]);
@@ -41,10 +43,10 @@ const FormBuilder = ({ user ,setUser}) => {
     });
     return isValid;
   };
-
+ 
   const handleSubmit = async () => {
-    if (!checkIfValid()) return alert("You can't have two input fields with the same label");
-
+    if (!checkIfValid())
+      return alert("You can't have two input fields with the same label");
     try {
       const response = await addForm({
         inputFields,
@@ -59,9 +61,9 @@ const FormBuilder = ({ user ,setUser}) => {
 
   return (
     <div className="formBuilder">
-      <Header/>
+      <Header />
       <div className="formBuilderbody">
-        <SideNavigation user={user} setUser={setUser}/>
+        <SideNavigation user={user} setUser={setUser} />
         <div className="container">
           <div className="formHeaders">
             <input
@@ -93,4 +95,4 @@ const FormBuilder = ({ user ,setUser}) => {
   );
 };
 
-export default FormBuilder;
+export default inject("globalStore")(observer(FormBuilder));

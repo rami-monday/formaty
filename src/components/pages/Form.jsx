@@ -37,9 +37,9 @@ const Form = () => {
   };
   if (Submit) {
     return <div>Thank you for submitting to us</div>;
-  } else if (form.status == "inactive") {
+  } else if (form.status === "inactive") {
     return <div>This Form has been deactivated by the owner</div>;
-  } else if (form.status == "expired") {
+  } else if (form.status === "expired") {
     return <div>This Form has stopped taking responses</div>;
   } else {
     return (

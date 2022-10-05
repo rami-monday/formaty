@@ -5,8 +5,11 @@ import { MdClear, MdSpaceDashboard, MdEmail } from "react-icons/md";
 import { FaAlignJustify, FaHome } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { inject, observer } from "mobx-react";
 
-export const SideNavigation = ({ user, setUser }) => {
+
+export const SideNavigation = ({globalStore}) => {
+  const { user, setUser } = globalStore
   const [showNav, setShowNav] = useState(true);
   const navigate = useNavigate();
 
@@ -48,4 +51,4 @@ export const SideNavigation = ({ user, setUser }) => {
   );
 };
 
-export default SideNavigation;
+export default inject("globalStore")(observer(SideNavigation));

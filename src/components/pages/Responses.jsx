@@ -8,9 +8,11 @@ import "../style/Responses.css";
 import SideNavigation from "../subComponents/SideNavigation";
 import Header from "../subComponents/Header";
 import SecBtn from "../subComponents/SecBtn";
+import { inject, observer } from "mobx-react";
 
 
-const Responses = ({ user,setUser }) => {
+const Responses = ({ globalStore }) => {
+  const { user, setUser } = globalStore;
   const { formId } = useParams();
   const [form, setForm] = useState({ inputFields: [] });
   const [responses, setResponses] = useState([]);
@@ -36,47 +38,47 @@ const Responses = ({ user,setUser }) => {
   const tableRef = useRef(null);
   return mappedResponses[0] ? (
     <div className="main">
-       <Header/>
+      <Header />
       <div className="responsesBody">
-      <SideNavigation user={user} setUser={setUser}/>
-      <div className="tableContainer">
-        <table ref={tableRef}>
-          <thead>
-            <tr>
-              {Object.keys(mappedResponses[0]).map((field, i) => (
-                <th key={i}>{field}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {mappedResponses.map((response, i) => {
-              return (
-                <tr key={i}>
-                  {Object.entries(response).map(([key, value]) => {
-                    if (key === "timestamp") {
-                      return (
-                        <td key={key + value}>
-                          {new Date(value).toLocaleDateString()}
-                        </td>
-                      );
-                    }
-                    return <td key={key + value}>{value}</td>;
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <DownloadTableExcel
-      filename={`${form.title}`}
-        sheet="Responses"
-        currentTableRef={tableRef.current}
-      >
-        <SecBtn btnText={"Export excel"}/> 
-      </DownloadTableExcel>
+        <SideNavigation user={user} setUser={setUser} />
+        <div className="tableContainer">
+          <table ref={tableRef}>
+            <thead>
+              <tr>
+                {Object.keys(mappedResponses[0]).map((field, i) => (
+                  <th key={i}>{field}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {mappedResponses.map((response, i) => {
+                return (
+                  <tr key={i}>
+                    {Object.entries(response).map(([key, value]) => {
+                      if (key === "timestamp") {
+                        return (
+                          <td key={key + value}>
+                            {new Date(value).toLocaleDateString()}
+                          </td>
+                        );
+                      }
+                      return <td key={key + value}>{value}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <DownloadTableExcel
+            filename={`${form.title}`}
+            sheet="Responses"
+            currentTableRef={tableRef.current}
+          >
+            <SecBtn btnText={"Export excel"} />
+          </DownloadTableExcel>
+        </div>
       </div>
-      </div>
-     
+
       {/* <CSVLink data={mappedResponses} filename = {`${form.title}.xlsx`} className= "exportButton">Export </CSVLink> */}
     </div>
   ) : (
@@ -84,4 +86,4 @@ const Responses = ({ user,setUser }) => {
   );
 };
 
-export default Responses;
+export default inject("globalStore")(observer(Responses));

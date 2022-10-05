@@ -50,7 +50,7 @@ function App() {
               element={
                 <AuthenticatedComponents
                   redirectComponent={
-                    <SignUp saveUserLocally={saveUserLocally} />
+                    <SignUp/>
                   }
                 >
                   <Dashboard />
@@ -70,7 +70,7 @@ function App() {
               path="/formBuilder"
               element={
                 <AuthenticatedComponents>
-                  <FormBuilder user={user} setUser={setUser} />
+                  <FormBuilder/>
                 </AuthenticatedComponents>
               }
             />
@@ -78,7 +78,7 @@ function App() {
               path="/responses/:formId"
               element={
                 <AuthenticatedComponents>
-                  <Responses user={user} setUser={setUser} />
+                  <Responses/>
                 </AuthenticatedComponents>
               }
             />
