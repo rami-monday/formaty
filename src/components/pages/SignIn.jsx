@@ -6,6 +6,7 @@ import Header from "../subComponents/Header";
 import SecBtn from "../subComponents/SecBtn";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { inject, observer } from "mobx-react";
+import { FaEye } from 'react-icons/fa';
 
 const SignIn = ({ globalStore }) => {
   const { saveUserLocally } = globalStore;
@@ -41,6 +42,7 @@ const SignIn = ({ globalStore }) => {
     <div className="mainContainer">
       <Header></Header>
       <div className="signIn">
+    
         <div className="signInHeaderContainer">
           <h1>Sign In</h1>
         </div>
@@ -56,6 +58,7 @@ const SignIn = ({ globalStore }) => {
               }
             }}
           />
+  
           <br />
         
           <input
@@ -68,14 +71,15 @@ const SignIn = ({ globalStore }) => {
                 handleClick();
               }
             }}
-            />
-          <button onClick={togglePassword} id="eyeIcon">
+            className="icon"/>
+             
+          {/* <button onClick={togglePassword} id="eyeIcon">
             {passwordType === "password" ? (
               <AiFillEye />
               ) : (
                 <AiOutlineEyeInvisible />
                 )}
-          </button>
+          </button> */}
         </div>
 
         <div className="logInBtnContainer">
