@@ -57,6 +57,7 @@ const SignIn = ({ globalStore }) => {
             }}
           />
           <br />
+        
           <input
             type={passwordType}
             value={user.password}
@@ -67,13 +68,13 @@ const SignIn = ({ globalStore }) => {
                 handleClick();
               }
             }}
-          />
+            />
           <button onClick={togglePassword} id="eyeIcon">
             {passwordType === "password" ? (
               <AiFillEye />
-            ) : (
-              <AiOutlineEyeInvisible />
-            )}
+              ) : (
+                <AiOutlineEyeInvisible />
+                )}
           </button>
         </div>
 

@@ -42,7 +42,7 @@ const Form = () => {
     )
   }else{
   return (
-    <div className="formBuilder">
+    <div className="formBuilderFillResponses">
       <h1> {form.title}</h1>
       {form?.inputFields?.map((input, i) => (
         <InputField

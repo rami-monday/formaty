@@ -50,7 +50,7 @@ body {
 #eyeIcon {
   background-color: #fff;
   border:#fff;
-  position: relative;
+position:relative;
   font-size: large;
   color: #17c3b2;
   margin-left: -40px;

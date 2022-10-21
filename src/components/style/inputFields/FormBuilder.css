@@ -6,6 +6,16 @@
     min-height: 100vh;
 }
 
+.formBuilderFillResponses{
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-rows: 1.1fr 3fr;
+    background-color: #FEF9EF;
+    min-height: 100vh;
+}
+
 .formBuilderbody {
     display: grid;
     grid-template-columns: 1fr 10fr;

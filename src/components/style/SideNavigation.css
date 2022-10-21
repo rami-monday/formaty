@@ -5,10 +5,11 @@
     background-color: white;
     transition: 0.5s ease all;
     box-shadow: 0 0 5px #929292;
+    position: relative;
 }
 
 .closeSideNavigator {
-    margin-left: -80%;
+    left: -240px;
 }
 
 .UserInformation {

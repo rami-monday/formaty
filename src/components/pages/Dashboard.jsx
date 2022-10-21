@@ -28,7 +28,7 @@ const Dashboard = ({ globalStore }) => {
     try {
       await deletFormById(formId);
       await getUserFormsFromDb();
-    } catch (error) {}
+    } catch (error) { }
   };
 
   const getFilteredForms = () => {
@@ -53,13 +53,16 @@ const Dashboard = ({ globalStore }) => {
         <div className="dashBoardBody">
           <SideNavigation user={user} setUser={setUser} />
           <div className="userForms">
-            <input
-              className="searchBar"
-              placeholder="Search Forms"
-              type="text"
-              value={searchTerm}
-              onChange={handleSearchBar}
-            />
+            <div className="inputContainer">
+
+              <input
+                className="searchBar"
+                placeholder="Search Forms"
+                type="text"
+                value={searchTerm}
+                onChange={handleSearchBar}
+              />
+            </div>
 
             <div className="dashBoardHeader">
               <div
